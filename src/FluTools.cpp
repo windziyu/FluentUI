@@ -25,7 +25,7 @@ void FluTools::clipText(const QString& text){
 }
 
 QString FluTools::uuid(){
-    return QUuid::createUuid().toString();
+    return QUuid::createUuid().toString().remove('-').remove('{').remove('}');
 }
 
 QString FluTools::readFile(const QString &fileName){
@@ -196,17 +196,25 @@ int FluTools::cursorScreenIndex(){
     return screenIndex;
 }
 
+int FluTools::windowBuildNumber(){
+#if defined(Q_OS_WIN)
+    QSettings regKey {QString::fromUtf8("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion"), QSettings::NativeFormat};
+    if (regKey.contains(QString::fromUtf8("CurrentBuildNumber"))) {
+        auto buildNumber = regKey.value(QString::fromUtf8("CurrentBuildNumber")).toInt();
+        return buildNumber;
+    }
+#endif
+    return -1;
+}
+
 bool FluTools::isWindows11OrGreater(){
     static QVariant var;
     if(var.isNull()){
 #if defined(Q_OS_WIN)
-        QSettings regKey {QString::fromUtf8("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion"), QSettings::NativeFormat};
-        if (regKey.contains(QString::fromUtf8("CurrentBuildNumber"))) {
-            auto buildNumber = regKey.value(QString::fromUtf8("CurrentBuildNumber")).toInt();
-            if(buildNumber>=22000){
-                var = QVariant::fromValue(true);
-                return true;
-            }
+        auto buildNumber = windowBuildNumber();
+        if(buildNumber>=22000){
+            var = QVariant::fromValue(true);
+            return true;
         }
 #endif
         var = QVariant::fromValue(false);
@@ -214,4 +222,25 @@ bool FluTools::isWindows11OrGreater(){
     }else{
         return var.toBool();
     }
+}
+
+bool FluTools::isWindows10OrGreater(){
+    static QVariant var;
+    if(var.isNull()){
+#if defined(Q_OS_WIN)
+        auto buildNumber = windowBuildNumber();
+        if(buildNumber>=10240){
+            var = QVariant::fromValue(true);
+            return true;
+        }
+#endif
+        var = QVariant::fromValue(false);
+        return  false;
+    }else{
+        return var.toBool();
+    }
+}
+
+int FluTools::getTaskBarHeight(QQuickWindow* window){
+    return window->screen()->geometry().height() - window->screen()->availableGeometry().height();
 }

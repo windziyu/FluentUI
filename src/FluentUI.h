@@ -5,11 +5,14 @@
 #include <QQmlEngine>
 #include "singleton.h"
 
+/**
+ * @brief The FluentUI class
+ */
 class FluentUI : public QObject
 {
     Q_OBJECT
 public:
-    SINGLETONG(FluentUI)
+    SINGLETON(FluentUI)
     Q_DECL_EXPORT void registerTypes(QQmlEngine *engine);
     void registerTypes(const char *uri);
     void initializeEngine(QQmlEngine *engine, const char *uri);

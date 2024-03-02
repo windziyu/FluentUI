@@ -18,7 +18,6 @@
 class FluApp : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY_AUTO(bool,vsync)
     Q_PROPERTY_AUTO(QString,initialRoute);
     Q_PROPERTY_AUTO(QJsonObject,routes);
     Q_PROPERTY_AUTO(bool,useSystemAppBar);
@@ -29,17 +28,17 @@ private:
     explicit FluApp(QObject *parent = nullptr);
     ~FluApp();
 public:
-    SINGLETONG(FluApp)
+    SINGLETON(FluApp)
     static FluApp *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine){return getInstance();}
     Q_INVOKABLE void run();
     Q_INVOKABLE void navigate(const QString& route,const QJsonObject& argument  = {},FluRegister* fluRegister = nullptr);
-    Q_INVOKABLE void init(QObject *window);
+    Q_INVOKABLE void init(QObject *target);
     Q_INVOKABLE void exit(int retCode = 0);
     void addWindow(QQuickWindow* window);
     void removeWindow(QQuickWindow* window);
 private:
     QMap<quint64, QQuickWindow*> _windows;
-    QObject* _application = nullptr;
+    QQmlEngine *_engine;
 };
 
 #endif // FLUAPP_H

@@ -39,8 +39,15 @@ Window {
     property bool showMaximize: true
     property bool showStayTop: true
     property bool autoMaximize: false
+    property bool autoVisible: true
+    property bool autoCenter: true
     property bool useSystemAppBar
-    property color resizeBorderColor: FluTheme.dark ? Qt.rgba(80/255,80/255,80/255,1) : Qt.rgba(210/255,210/255,210/255,1)
+    property color resizeBorderColor: {
+        if(window.active){
+            return FluTheme.dark ? "#333333" : "#6E6E6E"
+        }
+        return FluTheme.dark ? "#3D3D3E" : "#A7A7A7"
+    }
     property int resizeBorderWidth: 1
     property var closeListener: function(event){
         if(closeDestory){
@@ -54,24 +61,48 @@ Window {
     signal initArgument(var argument)
     signal firstVisible()
     property point _offsetXY : Qt.point(0,0)
+    property var _originalPos
+    property int _realHeight
+    property int _realWidth
+    property int _appBarHeight: appBar.height
     id:window
     color:"transparent"
     Component.onCompleted: {
-        moveWindowToDesktopCenter()
+        _realHeight = height
+        _realWidth = width
         useSystemAppBar = FluApp.useSystemAppBar
-        if(!useSystemAppBar){
-            loader_frameless_helper.sourceComponent = com_frameless
+        if(useSystemAppBar && autoCenter){
+            moveWindowToDesktopCenter()
         }
+        fixWindowSize()
         lifecycle.onCompleted(window)
         initArgument(argument)
-        if(window.autoMaximize){
-            window.showMaximized()
-        }else{
-            window.show()
+        if(!useSystemAppBar){
+            loader_frameless_helper.sourceComponent = com_frameless_helper
+        }
+        if(window.autoVisible){
+            if(window.autoMaximize){
+                window.showMaximized()
+            }else{
+                window.show()
+            }
         }
     }
     Component.onDestruction: {
         lifecycle.onDestruction()
+    }
+    on_OriginalPosChanged: {
+        if(_originalPos){
+            var dx = (_originalPos.x - screen.virtualX)/screen.devicePixelRatio
+            var dy = (_originalPos.y - screen.virtualY)/screen.devicePixelRatio
+            if(dx<0 && dy<0){
+                _offsetXY = Qt.point(Math.abs(dx)-1,Math.abs(dy)-1)
+            }else{
+                _offsetXY = Qt.point(0,0)
+            }
+        }else{
+            _offsetXY = Qt.point(0,0)
+        }
     }
     onShowSystemMenu: {
         if(loader_frameless_helper.item){
@@ -94,8 +125,14 @@ Window {
         function onClosing(event){closeListener(event)}
     }
     Component{
-        id:com_frameless
-        FluFramelessHelper{}
+        id:com_frameless_helper
+        FluFramelessHelper{
+            onLoadCompleted:{
+                if(autoCenter){
+                    window.moveWindowToDesktopCenter()
+                }
+            }
+        }
     }
     Component{
         id:com_background
@@ -171,6 +208,14 @@ Window {
             }
         }
     }
+    Component{
+        id:com_border
+        Rectangle{
+            color:"transparent"
+            border.width: window.resizeBorderWidth
+            border.color: window.resizeBorderColor
+        }
+    }
     FluLoader{
         id:loader_frameless_helper
     }
@@ -178,10 +223,7 @@ Window {
         id:layout_container
         anchors{
             fill:parent
-            leftMargin: _offsetXY.x
-            rightMargin: _offsetXY.x
             topMargin: _offsetXY.y
-            bottomMargin: _offsetXY.y
         }
         onWidthChanged: {
             window.appBar.width = width
@@ -225,22 +267,23 @@ Window {
             id:infoBar
             root: window
         }
-        WindowLifecycle{
+        FluWindowLifecycle{
             id:lifecycle
         }
-        Rectangle{
+        FluLoader{
+            id:loader_border
             anchors.fill: parent
-            color:"transparent"
-            border.width: window.resizeBorderWidth
-            border.color: window.resizeBorderColor
-            visible: {
+            sourceComponent: {
                 if(window.useSystemAppBar){
-                    return false
+                    return undefined
+                }
+                if(FluTools.isWindows10OrGreater()){
+                    return undefined
                 }
                 if(window.visibility == Window.Maximized || window.visibility == Window.FullScreen){
-                    return false
+                    return undefined
                 }
-                return true
+                return com_border
             }
         }
     }
@@ -272,12 +315,15 @@ Window {
     }
     function moveWindowToDesktopCenter(){
         screen = Qt.application.screens[FluTools.cursorScreenIndex()]
-        window.setGeometry((Screen.width-window.width)/2+Screen.virtualX,(Screen.height-window.height)/2+Screen.virtualY,window.width,window.height)
+        var taskBarHeight = FluTools.getTaskBarHeight(window)
+        window.setGeometry((Screen.width-window.width)/2+Screen.virtualX,(Screen.height-window.height-taskBarHeight)/2+Screen.virtualY,window.width,window.height)
+    }
+    function fixWindowSize(){
         if(fixSize){
-            maximumWidth =  width
-            maximumHeight =  height
-            minimumWidth = width
-            minimumHeight = height
+            window.maximumWidth =  window.width
+            window.maximumHeight =  window.height
+            window.minimumWidth = window.width
+            window.minimumHeight = window.height
         }
     }
     function onResult(data){

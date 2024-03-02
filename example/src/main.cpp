@@ -8,6 +8,7 @@
 #include <QProcess>
 #include <QtQml/qqmlextensionplugin.h>
 #include <QLoggingCategory>
+#include "Version.h"
 #include "AppInfo.h"
 #include "helper/Log.h"
 #include "src/component/CircularReveal.h"
@@ -22,9 +23,21 @@ Q_IMPORT_QML_PLUGIN(FluentUIPlugin)
 #include <FluentUI.h>
 #endif
 
+#ifdef WIN32
+#include "app_dmp.h"
+#endif
+
 int main(int argc, char *argv[])
 {
+#ifdef WIN32
+    ::SetUnhandledExceptionFilter(MyUnhandledExceptionFilter);
+    qputenv("QT_QPA_PLATFORM","windows:darkmode=2");
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     qputenv("QT_QUICK_CONTROLS_STYLE","Basic");
+#else
+    qputenv("QT_QUICK_CONTROLS_STYLE","Default");
+#endif
 #ifdef Q_OS_LINUX
     //fix bug UOSv20 does not print logs
     qputenv("QT_LOGGING_RULES","");
@@ -34,8 +47,13 @@ int main(int argc, char *argv[])
     QGuiApplication::setOrganizationName("ZhuZiChu");
     QGuiApplication::setOrganizationDomain("https://zhuzichu520.github.io");
     QGuiApplication::setApplicationName("FluentUI");
+    QGuiApplication::setApplicationDisplayName("FluentUI Exmaple");
+    QGuiApplication::setApplicationVersion(APPLICATION_VERSION);
     SettingsHelper::getInstance()->init(argv);
     Log::setup("example");
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
+    QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGL);
+#endif
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
@@ -43,18 +61,8 @@ int main(int argc, char *argv[])
     QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #endif
 #endif
-    if(SettingsHelper::getInstance()->getRender()=="software"){
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::Software);
-#elif (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-        QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
-#endif
-    }
     QGuiApplication app(argc, argv);
-    //    QLoggingCategory::setFilterRules(QStringLiteral("qt.scenegraph.general=true"));
-    //    qSetMessagePattern("%{category}: %{message}");
     QQmlApplicationEngine engine;
-    AppInfo::getInstance()->init(&engine);
     engine.rootContext()->setContextProperty("AppInfo",AppInfo::getInstance());
     engine.rootContext()->setContextProperty("SettingsHelper",SettingsHelper::getInstance());
 #ifdef FLUENTUI_BUILD_STATIC_LIB
@@ -74,5 +82,6 @@ int main(int argc, char *argv[])
     if (exec == 931) {
         QProcess::startDetached(qApp->applicationFilePath(), QStringList());
     }
+    Log::teardown();
     return exec;
 }

@@ -3,7 +3,6 @@ import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import FluentUI 1.0
-import "qrc:///example/qml/component"
 import "../component"
 
 FluScrollablePage{
@@ -42,7 +41,7 @@ FluScrollablePage{
             FluButton{
                 text:"Success"
                 onClicked: {
-                    showSuccess("这是一个Success样式的InfoBar这是一个Success样式的InfoBar")
+                    showSuccess("这是一个Success样式的InfoBar")
                 }
             }
             FluButton{

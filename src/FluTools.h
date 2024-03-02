@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QColor>
 #include <QtQml/qqml.h>
+#include <QQuickWindow>
 #include "singleton.h"
 
 /**
@@ -18,7 +19,7 @@ class FluTools : public QObject
 private:
     explicit FluTools(QObject *parent = nullptr);
 public:
-    SINGLETONG(FluTools)
+    SINGLETON(FluTools)
     static FluTools *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine){return getInstance();}
     Q_INVOKABLE int qtMajor();
     Q_INVOKABLE int qtMinor();
@@ -51,7 +52,10 @@ public:
     Q_INVOKABLE QPoint cursorPos();
     Q_INVOKABLE QIcon windowIcon();
     Q_INVOKABLE int cursorScreenIndex();
+    Q_INVOKABLE int windowBuildNumber();
     Q_INVOKABLE bool isWindows11OrGreater();
+    Q_INVOKABLE bool isWindows10OrGreater();
+    Q_INVOKABLE int getTaskBarHeight(QQuickWindow* window);
 };
 
 #endif // FLUTOOLS_H

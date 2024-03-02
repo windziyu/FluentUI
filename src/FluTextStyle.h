@@ -7,6 +7,9 @@
 #include "stdafx.h"
 #include "singleton.h"
 
+/**
+ * @brief The FluTextStyle class
+ */
 class FluTextStyle : public QObject
 {
     Q_OBJECT
@@ -23,7 +26,7 @@ public:
 private:
     explicit FluTextStyle(QObject *parent = nullptr);
 public:
-    SINGLETONG(FluTextStyle)
+    SINGLETON(FluTextStyle)
     static FluTextStyle *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine){return getInstance();}
 };
 

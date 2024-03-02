@@ -193,12 +193,6 @@ FluObject{
             onTap:{ navigationView.push(url) }
         }
         FluPaneItem{
-            title:"StatusView"
-            menuDelegate: paneItemMenu
-            url:"qrc:/example/qml/page/T_StatusView.qml"
-            onTap:{ navigationView.push(url) }
-        }
-        FluPaneItem{
             title:"Carousel"
             menuDelegate: paneItemMenu
             url:"qrc:/example/qml/page/T_Carousel.qml"
@@ -211,15 +205,32 @@ FluObject{
             onTap:{ navigationView.push(url) }
         }
         FluPaneItem{
-            title:"StaggeredView"
-            menuDelegate: paneItemMenu
-            url:"qrc:/example/qml/page/T_StaggeredView.qml"
-            onTap:{ navigationView.push(url) }
-        }
-        FluPaneItem{
             title:"Watermark"
             menuDelegate: paneItemMenu
             url:"qrc:/example/qml/page/T_Watermark.qml"
+            onTap:{ navigationView.push(url) }
+        }
+    }
+
+    FluPaneItemExpander{
+        title:Lang.layout
+        icon:FluentIcons.DockLeft
+        FluPaneItem{
+            title:"StaggeredLayout"
+            menuDelegate: paneItemMenu
+            url:"qrc:/example/qml/page/T_StaggeredLayout.qml"
+            onTap:{ navigationView.push(url) }
+        }
+        FluPaneItem{
+            title:"SplitLayout"
+            menuDelegate: paneItemMenu
+            url:"qrc:/example/qml/page/T_SplitLayout.qml"
+            onTap:{ navigationView.push(url) }
+        }
+        FluPaneItem{
+            title:"StatusLayout"
+            menuDelegate: paneItemMenu
+            url:"qrc:/example/qml/page/T_StatusLayout.qml"
             onTap:{ navigationView.push(url) }
         }
     }
@@ -422,12 +433,6 @@ FluObject{
             onTap:{ navigationView.push(url) }
         }
         FluPaneItem{
-            title:"Screenshot(Todo)"
-            menuDelegate: paneItemMenu
-            url:"qrc:/example/qml/page/T_Screenshot.qml"
-            onTap:{ navigationView.push(url) }
-        }
-        FluPaneItem{
             title:"Captcha"
             menuDelegate: paneItemMenu
             url:"qrc:/example/qml/page/T_Captcha.qml"
@@ -465,6 +470,13 @@ FluObject{
             menuDelegate: paneItemMenu
             url:"qrc:/example/qml/page/T_3D.qml"
             onTap:{ navigationView.push(url) }
+        }
+        FluPaneItem{
+            title:"Test Crash"
+            visible: FluTools.isWin()
+            onTapListener: function(){
+                AppInfo.testCrash()
+            }
         }
     }
 

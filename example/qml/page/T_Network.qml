@@ -4,7 +4,6 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import FluentUI 1.0
 import Qt.labs.platform 1.0
-import "qrc:///example/qml/component"
 import "../component"
 
 FluContentPage{
@@ -408,7 +407,7 @@ FluContentPage{
                 text: "Download File"
                 onClicked: {
                     folder_dialog.showDialog(function(path){
-                        FluNetwork.get("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+                        FluNetwork.get("http://vjs.zencdn.net/v/oceans.mp4")
                         .toDownload(path)
                         .bind(root)
                         .go(callable_download_file)
@@ -422,7 +421,7 @@ FluContentPage{
                 text: "Breakpoint Download File"
                 onClicked: {
                     folder_dialog.showDialog(function(path){
-                        FluNetwork.get("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+                        FluNetwork.get("http://vjs.zencdn.net/v/oceans.mp4")
                         .toDownload(path,true)
                         .bind(root)
                         .go(callable_breakpoint_download_file)
@@ -522,7 +521,7 @@ FluContentPage{
         property var onSelectListener
         id: folder_dialog
         folder: StandardPaths.standardLocations(StandardPaths.DownloadLocation)[0]
-        currentFile: StandardPaths.standardLocations(StandardPaths.DownloadLocation)[0]+"/big_buck_bunny.mp4"
+        currentFile: StandardPaths.standardLocations(StandardPaths.DownloadLocation)[0]+"/oceans.mp4"
         fileMode: FileDialog.SaveFile
         onAccepted: {
             folder_dialog.onSelectListener(FluTools.toLocalPath(folder_dialog.currentFile))

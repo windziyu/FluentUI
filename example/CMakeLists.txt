@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(example VERSION 1.0)
+project(example VERSION 1.0 LANGUAGES CXX)
 
 #配置通用编译
 set(CMAKE_CXX_STANDARD 17)
@@ -20,9 +20,6 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 else()
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<1:${FLUENTUI_DIRECTORY}/bin/release>)
 endif()
-
-#获取文件路径分隔符（解决执行命令的时候有些平台会报错）
-file(TO_CMAKE_PATH "/" PATH_SEPARATOR)
 
 #导入Qt相关依赖包
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Quick Svg Network)
@@ -50,6 +47,10 @@ foreach(filepath ${CPP_FILES})
     list(APPEND sources_files ${filename})
 endforeach(filepath)
 
+if(WIN32)
+    list(APPEND sources_files "src/app_dmp.h")
+endif()
+
 if(QT_VERSION VERSION_GREATER_EQUAL "6.2")
     #遍历所有qml文件
     file(GLOB_RECURSE QML_PATHS *.qml qmldir)
@@ -70,7 +71,6 @@ if(QT_VERSION VERSION_GREATER_EQUAL "6.2")
     file(GLOB_RECURSE RES_PATHS *.png *.jpg *.svg *.ico *.ttf *.webp *.obj)
     foreach(filepath ${RES_PATHS})
         string(REPLACE "${CMAKE_CURRENT_SOURCE_DIR}/" "" filename ${filepath})
-        message(${filename})
         list(APPEND resource_files ${filename})
     endforeach(filepath)
 
@@ -106,18 +106,16 @@ endif ()
 if(WIN32)
     if(MSVC)
         if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-            set(3RDPARTY_DLL_DIR ${CMAKE_SOURCE_DIR}/3rdparty/msvc/x86/*.dll)
+            file(GLOB_RECURSE 3RDPARTY_DLL_DIR ${CMAKE_SOURCE_DIR}/3rdparty/msvc/x86/*.dll)
         elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-            set(3RDPARTY_DLL_DIR ${CMAKE_SOURCE_DIR}/3rdparty/msvc/x64/*.dll)
+            file(GLOB_RECURSE 3RDPARTY_DLL_DIR ${CMAKE_SOURCE_DIR}/3rdparty/msvc/x64/*.dll)
         endif()
     elseif(MINGW)
-        set(3RDPARTY_DLL_DIR ${CMAKE_SOURCE_DIR}/3rdparty/mingw/*.dll)
+        file(GLOB_RECURSE 3RDPARTY_DLL_DIR ${CMAKE_SOURCE_DIR}/3rdparty/mingw/*.dll)
     endif()
-    string(REPLACE "/" ${PATH_SEPARATOR} 3RDPARTY_DLL_DIR "${3RDPARTY_DLL_DIR}")
-    file(GLOB DLL_FILES ${3RDPARTY_DLL_DIR})
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
-        ${DLL_FILES}
+        ${3RDPARTY_DLL_DIR}
         ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
     )
 endif()
@@ -136,7 +134,7 @@ else()
     target_include_directories(example PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
     )
-    target_sources(example PRIVATE example.qrc)
+target_sources(example PRIVATE example.qrc)
 endif()
 
 #导入component头文件,不然通过QML_NAMED_ELEMENT生成的c++类会找不到头文件报错

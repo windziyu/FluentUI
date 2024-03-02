@@ -75,7 +75,6 @@ FluSlider 1.0 Controls/FluSlider.qml
 FluSpinBox 1.0 Controls/FluSpinBox.qml
 FluStatusView 1.0 Controls/FluStatusView.qml
 FluTabView 1.0 Controls/FluTabView.qml
-FluTableModelColumn 1.0 Controls/FluTableModelColumn.qml
 FluTableView 1.0 Controls/FluTableView.qml
 FluText 1.0 Controls/FluText.qml
 FluTextBox 1.0 Controls/FluTextBox.qml
@@ -97,4 +96,6 @@ FluLoadingButton 1.0 Controls/FluLoadingButton.qml
 FluClip 1.0 Controls/FluClip.qml
 FluLoader 1.0 Controls/FluLoader.qml
 FluShortcutPicker 1.0 Controls/FluShortcutPicker.qml
+FluSplitLayout 1.0 Controls/FluSplitLayout.qml
+FluStaggeredLayout 1.0 Controls/FluStaggeredLayout.qml
 plugin fluentuiplugin

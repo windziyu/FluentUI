@@ -5,9 +5,9 @@ import QtQuick.Layouts
 import Qt.labs.platform
 import FluentUI
 import example
-import "qrc:///example/qml/component"
-import "qrc:///example/qml/global"
-import "qrc:///example/qml/viewmodel"
+import "../component"
+import "../global"
+import "../viewmodel"
 
 FluWindow {
 
@@ -174,12 +174,15 @@ FluWindow {
                         loader.reload()
                     }
                 }
+                Component.onCompleted: {
+                    appBar.setHitTestVisible(layout_back_buttons)
+                }
             }
             FluRemoteLoader{
                 id:loader
                 lazy: true
                 anchors.fill: parent
-                source: "https://zhu-zichu.gitee.io/Qt_163_LieflatPage.qml"
+                source: "https://zhu-zichu.gitee.io/Qt_168_LieflatPage.qml"
             }
         }
         front: Item{
@@ -230,6 +233,9 @@ FluWindow {
                     ItemsOriginal.paneItemMenu = nav_item_right_menu
                     ItemsFooter.navigationView = nav_view
                     ItemsFooter.paneItemMenu = nav_item_right_menu
+                    appBar.setHitTestVisible(nav_view.buttonMenu)
+                    appBar.setHitTestVisible(nav_view.buttonBack)
+                    appBar.setHitTestVisible(nav_view.imageLogo)
                     setCurrentIndex(0)
                 }
             }
@@ -310,9 +316,9 @@ FluWindow {
         steps:{
             var data = []
             if(!window.useSystemAppBar){
-                data.push({title:"夜间模式",description: "这里可以切换夜间模式.",target:()=>appBar.darkButton()})
+                data.push({title:"夜间模式",description: "这里可以切换夜间模式.",target:()=>appBar.buttonDark})
             }
-            data.push({title:"隐藏彩蛋",description: "多点几下试试！！",target:()=>nav_view.logoButton()})
+            data.push({title:"隐藏彩蛋",description: "多点几下试试！！",target:()=>nav_view.imageLogo})
             return data
         }
     }
@@ -385,5 +391,4 @@ FluWindow {
         FluNetwork.get("https://api.github.com/repos/zhuzichu520/FluentUI/releases/latest")
         .go(callable)
     }
-
 }

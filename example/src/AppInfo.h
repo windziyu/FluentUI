@@ -13,8 +13,8 @@ class AppInfo : public QObject
 private:
     explicit AppInfo(QObject *parent = nullptr);
 public:
-    SINGLETONG(AppInfo)
-    void init(QQmlApplicationEngine *engine);
+    SINGLETON(AppInfo)
+    Q_INVOKABLE void testCrash();
 };
 
 #endif // APPINFO_H

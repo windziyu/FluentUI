@@ -2,12 +2,12 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Window
 import QtQuick.Controls
-import "qrc:///example/qml/component"
 import FluentUI 1.0
+import "../component"
 
 FluContentPage{
 
-    title:"StaggeredView"
+    title:"StaggeredLayout"
 
     property var colors : [FluColors.Yellow,FluColors.Orange,FluColors.Red,FluColors.Magenta,FluColors.Purple,FluColors.Blue,FluColors.Teal,FluColors.Green]
 
@@ -32,7 +32,7 @@ FluContentPage{
         contentHeight: staggered_view.implicitHeight
         clip: true
         ScrollBar.vertical: FluScrollBar {}
-        FluStaggeredView{
+        FluStaggeredLayout{
             id:staggered_view
             width: parent.width
             itemWidth: 160

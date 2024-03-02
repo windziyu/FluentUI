@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import FluentUI
 import example
-import "qrc:///example/qml/component"
+import "../component"
 
 FluWindow {
 
@@ -25,7 +25,7 @@ FluWindow {
         FluRemoteLoader{
             id:loader
             anchors.fill: parent
-            statusMode: FluStatusViewType.Success
+            statusMode: FluStatusLayoutType.Success
             lazy: true
             errorItem: Item{
                 FluText{
@@ -43,7 +43,7 @@ FluWindow {
             text:"拖入qml文件"
             font.pixelSize: 26
             anchors.centerIn: parent
-            visible: !loader.itemLodaer().item && loader.statusMode === FluStatusViewType.Success
+            visible: !loader.itemLodaer().item && loader.statusMode === FluStatusLayoutType.Success
         }
         Rectangle{
             radius: 4

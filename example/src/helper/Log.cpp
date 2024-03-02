@@ -92,8 +92,11 @@ QString Log::prettyProductInfoWrapper()
     return productName;
 }
 
-static inline void myMessageHandler(const QtMsgType type, const QMessageLogContext &context, const QString &message)
+static inline void messageHandler(const QtMsgType type, const QMessageLogContext &context, const QString &message)
 {
+    if(message == "Could not get the INetworkConnection instance for the adapter GUID."){
+        return;
+    }
     if(logLevelMap[type]>g_logLevel){
         return;
     }
@@ -165,12 +168,13 @@ static inline void myMessageHandler(const QtMsgType type, const QMessageLogConte
     }
 }
 
-void Log::setup(const QString &app)
+void Log::setup(const QString &app,int level)
 {
     Q_ASSERT(!app.isEmpty());
     if (app.isEmpty()) {
         return;
     }
+    g_logLevel = level;
     static bool once = false;
     if (once) {
         return;
@@ -184,10 +188,11 @@ void Log::setup(const QString &app)
         logDir.mkpath(logDirPath);
     }
     g_file_path = logDir.filePath(logFileName);
-    qInstallMessageHandler(myMessageHandler);
+    qInstallMessageHandler(messageHandler);
     qInfo()<<"===================================================";
     qInfo()<<"[AppName]"<<g_app;
     qInfo()<<"[AppVersion]"<<APPLICATION_VERSION;
+    qInfo()<<"[QtVersion]"<<QT_VERSION_STR;
 #ifdef WIN32
     qInfo()<<"[ProcessId]"<<QString::number(_getpid());
 #else
@@ -201,4 +206,9 @@ void Log::setup(const QString &app)
     qInfo()<<"[LOG_LEVEL]"<<g_logLevel;
     qInfo()<<"[LOG_PATH]"<<g_file_path;
     qInfo()<<"===================================================";
+}
+
+void Log::teardown()
+{
+    qInstallMessageHandler(0);
 }

@@ -22,6 +22,9 @@ Item {
     property int cellHeight: 38
     property int cellWidth: 300
     property bool hideNavAppBar: false
+    property alias buttonMenu: btn_menu
+    property alias buttonBack: btn_back
+    property alias imageLogo: image_logo
     signal logoClicked
     id:control
     Item{
@@ -42,15 +45,22 @@ Item {
         function handleItems(){
             var _idx = 0
             var data = []
+            var comEmpty = Qt.createComponent("FluPaneItemEmpty.qml");
             if(items){
                 for(var i=0;i<items.children.length;i++){
                     var item = items.children[i]
+                    if(item.visible !== true){
+                        continue
+                    }
                     item._idx = _idx
                     data.push(item)
                     _idx++
                     if(item instanceof FluPaneItemExpander){
                         for(var j=0;j<item.children.length;j++){
                             var itemChild = item.children[j]
+                            if(itemChild.visible !== true){
+                                continue
+                            }
                             itemChild._parent = item
                             itemChild._idx = _idx
                             data.push(itemChild)
@@ -59,19 +69,32 @@ Item {
                     }
                 }
                 if(footerItems){
-                    var comEmpty = Qt.createComponent("FluPaneItemEmpty.qml");
                     for(var k=0;k<footerItems.children.length;k++){
                         var itemFooter = footerItems.children[k]
-                        if (comEmpty.status === Component.Ready) {
-                            var objEmpty = comEmpty.createObject(items,{_idx:_idx});
-                            itemFooter._idx = _idx;
-                            data.push(objEmpty)
-                            _idx++
+                        if(itemFooter.visible !== true){
+                            continue
                         }
+                        var objEmpty = comEmpty.createObject(items,{_idx:_idx});
+                        itemFooter._idx = _idx;
+                        data.push(objEmpty)
+                        _idx++
                     }
                 }
             }
             return data
+        }
+        function handleFooterItems(){
+            var data = []
+            if(footerItems){
+                for(var i=0;i<footerItems.children.length;i++){
+                    var item = footerItems.children[i]
+                    if(item.visible !== true){
+                        continue
+                    }
+                    data.push(item)
+                }
+            }
+            return data;
         }
     }
     Component.onCompleted: {
@@ -182,7 +205,7 @@ Item {
                 }
                 FluTooltip {
                     text: model.title
-                    visible: item_control.hovered && model.title && d.isCompact
+                    visible: item_control.hovered && model.title && d.isCompactAndNotPanel
                     delay: 800
                 }
                 MouseArea{
@@ -258,6 +281,9 @@ Item {
                             }
                             for(var i=0;i<model.children.length;i++){
                                 var item = model.children[i]
+                                if(item.visible !== true){
+                                    continue
+                                }
                                 if(item._idx === nav_list.currentIndex && !model.isExpand){
                                     return true
                                 }
@@ -466,7 +492,7 @@ Item {
                 }
                 FluTooltip {
                     text: model.title
-                    visible: item_control.hovered && model.title && d.isCompact
+                    visible: item_control.hovered && model.title && d.isCompactAndNotPanel
                     delay: 800
                 }
                 onClicked:{
@@ -733,7 +759,7 @@ Item {
                 }
             }
             FluIconButton{
-                id:btn_nav
+                id:btn_menu
                 iconSource: FluentIcons.GlobalNavButton
                 iconSize: 15
                 Layout.preferredWidth: d.isMinimal ? 30 : 0
@@ -765,7 +791,7 @@ Item {
                 Layout.preferredWidth: 20
                 source: control.logo
                 Layout.leftMargin: {
-                    if(btn_nav.visible){
+                    if(btn_menu.visible){
                         return 12
                     }
                     return 5
@@ -1040,11 +1066,7 @@ Item {
             interactive: false
             boundsBehavior: ListView.StopAtBounds
             currentIndex: -1
-            model: {
-                if(footerItems){
-                    return footerItems.children
-                }
-            }
+            model: d.handleFooterItems()
             highlightMoveDuration: 150
             highlight: Item{
                 clip: true
@@ -1318,14 +1340,5 @@ Item {
                 return
             }
         }
-    }
-    function backButton(){
-        return btn_back
-    }
-    function navButton(){
-        return btn_nav
-    }
-    function logoButton(){
-        return image_logo
     }
 }

@@ -6,6 +6,9 @@
 #include "stdafx.h"
 #include "singleton.h"
 
+/**
+ * @brief The FluEvent class
+ */
 class FluEvent : public QObject{
     Q_OBJECT
     Q_PROPERTY_AUTO(QString,name);
@@ -15,6 +18,9 @@ public:
     Q_SIGNAL void triggered(QMap<QString, QVariant> data);
 };
 
+/**
+ * @brief The FluEventBus class
+ */
 class FluEventBus : public QObject
 {
     Q_OBJECT
@@ -23,7 +29,7 @@ class FluEventBus : public QObject
 private:
     explicit FluEventBus(QObject *parent = nullptr);
 public:
-    SINGLETONG(FluEventBus)
+    SINGLETON(FluEventBus)
     static FluEventBus *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine){return getInstance();}
     Q_INVOKABLE void registerEvent(FluEvent* event);
     Q_INVOKABLE void unRegisterEvent(FluEvent* event);

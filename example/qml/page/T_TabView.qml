@@ -3,7 +3,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
 import FluentUI 1.0
-import "qrc:///example/qml/component"
 import "../component"
 
 FluScrollablePage{
@@ -68,10 +67,10 @@ FluScrollablePage{
                 text:"Always"
                 Layout.preferredWidth: 120
                 FluMenuItem{
-                    text:"Nerver"
+                    text:"Never"
                     onClicked: {
                         btn_close_button_visibility.text = text
-                        tab_view.closeButtonVisibility = FluTabViewType.Nerver
+                        tab_view.closeButtonVisibility = FluTabViewType.Never
                     }
                 }
                 FluMenuItem{

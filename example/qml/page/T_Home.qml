@@ -2,8 +2,8 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
-import "qrc:///example/qml/global"
 import FluentUI 1.0
+import "../global"
 
 FluScrollablePage{
 
@@ -27,7 +27,6 @@ FluScrollablePage{
             id: bg
             fillMode:Image.PreserveAspectCrop
             anchors.fill: parent
-            asynchronous: true
             verticalAlignment: Qt.AlignTop
             sourceSize: Qt.size(960,640)
             source: "qrc:/example/res/image/bg_home_header.png"

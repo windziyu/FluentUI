@@ -2,7 +2,6 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import FluentUI 1.0
-import "qrc:///example/qml/component"
 import "../component"
 
 FluWindow {
@@ -10,7 +9,7 @@ FluWindow {
     id:window
     title:"关于"
     width: 600
-    height: 600
+    height: 580
     fixSize: true
     launchMode: FluWindowType.SingleTask
 
