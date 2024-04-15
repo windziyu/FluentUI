@@ -4,31 +4,25 @@ import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
 import FluentUI 1.0
 
-Rectangle {
-    property color dividerColor: FluTheme.dark ? Qt.rgba(77/255,77/255,77/255,1) : Qt.rgba(239/255,239/255,239/255,1)
-    property color hoverColor: FluTheme.dark ? Qt.rgba(68/255,68/255,68/255,1) : Qt.rgba(251/255,251/255,251/255,1)
-    property color normalColor: FluTheme.dark ? Qt.rgba(61/255,61/255,61/255,1) : Qt.rgba(254/255,254/255,254/255,1)
+
+FluButton {
     property bool showYear: true
     property var current
+    property string yearText: qsTr("Year")
+    property string monthText: qsTr("Month")
+    property string dayText: qsTr("Day")
+    property string cancelText: qsTr("Cancel")
+    property string okText: qsTr("OK")
     signal accepted()
     id:control
-    color: {
-        if(mouse_area.containsMouse){
-            return hoverColor
-        }
-        return normalColor
-    }
-    height: 30
-    width: 300
-    radius: 4
-    border.width: 1
-    border.color: dividerColor
+    implicitHeight: 30
+    implicitWidth: 300
     Component.onCompleted: {
         if(current){
             const now = current;
-            var year = text_year.text === "年"? now.getFullYear() : Number(text_year.text);
-            var month = text_month.text === "月"? now.getMonth() + 1 : Number(text_month.text);
-            var day =  text_day.text === "日" ? now.getDate() : Number(text_day.text);
+            var year = text_year.text === control.yearText? now.getFullYear() : Number(text_year.text);
+            var month = text_month.text === control.monthText? now.getMonth() + 1 : Number(text_month.text);
+            var day =  text_day.text === control.dayText ? now.getDate() : Number(text_day.text);
             text_year.text = year
             text_month.text = month
             text_day.text = day
@@ -41,28 +35,23 @@ Rectangle {
         property var rowData: ["","",""]
         visible: false
     }
-    MouseArea{
-        id:mouse_area
-        hoverEnabled: true
-        anchors.fill: parent
-        onClicked: {
-            popup.showPopup()
-        }
+    onClicked: {
+        popup.showPopup()
     }
     Rectangle{
         id:divider_1
         width: 1
         x:  parent.width/3
-        height: parent.height
-        color: dividerColor
+        height: parent.height - 1
+        color: control.dividerColor
         visible: showYear
     }
     Rectangle{
         id:divider_2
         width: 1
         x: showYear ? parent.width*2/3 :  parent.width/2
-        height: parent.height
-        color: dividerColor
+        height: parent.height - 1
+        color: control.dividerColor
     }
     FluText{
         id:text_year
@@ -75,7 +64,8 @@ Rectangle {
         visible: showYear
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        text:"年"
+        text:control.yearText
+        color: control.textColor
     }
     FluText{
         id:text_month
@@ -87,7 +77,8 @@ Rectangle {
         }
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        text:"月"
+        text:control.monthText
+        color: control.textColor
     }
     FluText{
         id:text_day
@@ -99,7 +90,8 @@ Rectangle {
         }
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        text:"日"
+        text:control.dayText
+        color: control.textColor
     }
     Menu{
         id:popup
@@ -113,7 +105,7 @@ Rectangle {
                 property: "opacity"
                 from:0
                 to:1
-                duration: FluTheme.enableAnimation ? 83 : 0
+                duration: FluTheme.animationEnabled ? 83 : 0
             }
         }
         exit:Transition {
@@ -121,7 +113,7 @@ Rectangle {
                 property: "opacity"
                 from:1
                 to:0
-                duration: FluTheme.enableAnimation ? 83 : 0
+                duration: FluTheme.animationEnabled ? 83 : 0
             }
         }
         background:Item{
@@ -242,7 +234,7 @@ Rectangle {
                     Rectangle{
                         width: 1
                         height: parent.height
-                        color: dividerColor
+                        color: control.dividerColor
                     }
                     ListView{
                         id:list_view_2
@@ -264,7 +256,7 @@ Rectangle {
                     Rectangle{
                         width: 1
                         height: parent.height
-                        color: dividerColor
+                        color: control.dividerColor
                     }
                     ListView{
                         id:list_view_3
@@ -289,7 +281,7 @@ Rectangle {
                     width: parent.width
                     height: 1
                     anchors.top: layout_content.bottom
-                    color: dividerColor
+                    color: control.dividerColor
                 }
                 Rectangle{
                     id:layout_actions
@@ -315,7 +307,7 @@ Rectangle {
                             right: divider.left
                             verticalCenter: parent.verticalCenter
                         }
-                        text: "取消"
+                        text: control.cancelText
                         onClicked: {
                             popup.close()
                         }
@@ -328,7 +320,7 @@ Rectangle {
                             leftMargin: 10
                             verticalCenter: parent.verticalCenter
                         }
-                        text: "确定"
+                        text: control.okText
                         onClicked: {
                             d.changeFlag = false
                             popup.close()
@@ -356,9 +348,9 @@ Rectangle {
             d.rowData[1] = text_month.text
             d.rowData[2] = text_day.text
             const now = new Date();
-            var year = text_year.text === "年"? now.getFullYear() : Number(text_year.text);
-            var month = text_month.text === "月"? now.getMonth() + 1 : Number(text_month.text);
-            var day =  text_day.text === "日" ? now.getDate() : Number(text_day.text);
+            var year = text_year.text === control.yearText? now.getFullYear() : Number(text_year.text);
+            var month = text_month.text === control.monthText? now.getMonth() + 1 : Number(text_month.text);
+            var day =  text_day.text === control.dayText ? now.getDate() : Number(text_day.text);
             list_view_1.currentIndex = list_view_1.model.indexOf(year)
             text_year.text = year
             list_view_2.model = generateMonthArray(1,12)

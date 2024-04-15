@@ -8,6 +8,7 @@
 #include <QUuid>
 #include <QFontDatabase>
 #include <QClipboard>
+#include <QTranslator>
 
 FluApp::FluApp(QObject *parent):QObject{parent}{
     useSystemAppBar(false);
@@ -16,73 +17,17 @@ FluApp::FluApp(QObject *parent):QObject{parent}{
 FluApp::~FluApp(){
 }
 
-void FluApp::init(QObject *target){
+void FluApp::init(QObject *target,QLocale locale){
+    _locale = locale;
     _engine = qmlEngine(target);
-}
-
-void FluApp::run(){
-    navigate(initialRoute());
-}
-
-void FluApp::navigate(const QString& route,const QJsonObject& argument,FluRegister* fluRegister){
-    if(!routes().contains(route)){
-        qCritical()<<"Not Found Route "<<route;
-        return;
-    }
-    QQmlComponent component(_engine, routes().value(route).toString());
-    if (component.isError()) {
-        qCritical() << component.errors();
-        return;
-    }
-    QVariantMap properties;
-    properties.insert("_route",route);
-    if(fluRegister){
-        properties.insert("_pageRegister",QVariant::fromValue(fluRegister));
-    }
-    properties.insert("argument",argument);
-    QQuickWindow *win=nullptr;
-    for (const auto& pair : _windows.toStdMap()) {
-        QString r =  pair.second->property("_route").toString();
-        if(r == route){
-            win = pair.second;
+    _translator = new QTranslator(this);
+    qApp->installTranslator(_translator);
+    const QStringList uiLanguages = _locale.uiLanguages();
+    for (const QString &name : uiLanguages) {
+        const QString baseName = "fluentui_" + QLocale(name).name();
+        if (_translator->load(":/qt/qml/FluentUI/i18n/"+ baseName)) {
+            _engine->retranslate();
             break;
         }
-    }
-    if(win){
-        int launchMode = win->property("launchMode").toInt();
-        if(launchMode == 1){
-            win->setProperty("argument",argument);
-            win->show();
-            win->raise();
-            win->requestActivate();
-            return;
-        }else if(launchMode == 2){
-            win->close();
-        }
-    }
-    win = qobject_cast<QQuickWindow*>(component.createWithInitialProperties(properties));
-    if(fluRegister){
-        fluRegister->to(win);
-    }
-    win->setColor(QColor(Qt::transparent));
-}
-
-void FluApp::exit(int retCode){
-    for (const auto& pair : _windows.toStdMap()) {
-        pair.second->close();
-        removeWindow(pair.second);
-    }
-    qApp->exit(retCode);
-}
-
-void FluApp::addWindow(QQuickWindow* window){
-    _windows.insert(window->winId(),window);
-}
-
-void FluApp::removeWindow(QQuickWindow* window){
-    if(window){
-        _windows.remove(window->winId());
-        window->deleteLater();
-        window = nullptr;
     }
 }

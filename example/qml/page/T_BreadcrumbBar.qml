@@ -7,7 +7,7 @@ import "../component"
 
 FluScrollablePage{
 
-    title:"BreadcurmbBar"
+    title: qsTr("BreadcurmbBar")
 
     Component.onCompleted: {
         var items = []
@@ -18,11 +18,10 @@ FluScrollablePage{
         breadcrumb_2.items = items
     }
 
-    FluArea{
+    FluFrame{
         Layout.fillWidth: true
-        height: 68
-        paddings: 10
-        Layout.topMargin: 20
+        Layout.preferredHeight: 68
+        padding: 10
 
         FluBreadcrumbBar{
             id:breadcrumb_1
@@ -36,10 +35,10 @@ FluScrollablePage{
     }
 
 
-    FluArea{
+    FluFrame{
         Layout.fillWidth: true
-        height: 100
-        paddings: 10
+        Layout.preferredHeight: 100
+        padding: 10
         Layout.topMargin: 20
 
         ColumnLayout{
@@ -48,7 +47,7 @@ FluScrollablePage{
             spacing: 10
 
             FluFilledButton{
-                text:"Reset sample"
+                text: qsTr("Reset sample")
                 onClicked:{
                     var items = []
                     for(var i=0;i<10;i++){
@@ -66,7 +65,6 @@ FluScrollablePage{
                 Layout.fillWidth: true
                 onClickItem:
                     (model)=>{
-                        //不是点击最后一个item元素
                         if(model.index+1!==count()){
                             breadcrumb_2.remove(model.index+1,count()-model.index-1)
                         }
@@ -78,7 +76,7 @@ FluScrollablePage{
 
     CodeExpander{
         Layout.fillWidth: true
-        Layout.topMargin: -1
+        Layout.topMargin: -6
         code:'FluBreadcrumbBar{
     width:parent.width
     separator:">"

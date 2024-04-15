@@ -4,26 +4,20 @@ import QtQuick.Layouts
 import QtQuick.Window
 import FluentUI
 
-Rectangle {
-    property color dividerColor: FluTheme.dark ? Qt.rgba(77/255,77/255,77/255,1) : Qt.rgba(239/255,239/255,239/255,1)
-    property color hoverColor: FluTheme.dark ? Qt.rgba(68/255,68/255,68/255,1) : Qt.rgba(251/255,251/255,251/255,1)
-    property color normalColor: FluTheme.dark ? Qt.rgba(61/255,61/255,61/255,1) : Qt.rgba(254/255,254/255,254/255,1)
+FluButton {
     property int hourFormat: FluTimePickerType.H
     property int isH: hourFormat === FluTimePickerType.H
     property var current
+    property string amText: qsTr("AM")
+    property string pmText: qsTr("PM")
+    property string hourText: qsTr("Hour")
+    property string minuteText: qsTr("Minute")
+    property string cancelText: qsTr("Cancel")
+    property string okText: qsTr("OK")
     signal accepted()
     id:control
-    color: {
-        if(mouse_area.containsMouse){
-            return hoverColor
-        }
-        return normalColor
-    }
-    height: 30
-    width: 300
-    radius: 4
-    border.width: 1
-    border.color: dividerColor
+    implicitHeight: 30
+    implicitWidth: 300
     Component.onCompleted: {
         if(current){
             var now = current;
@@ -32,17 +26,17 @@ Rectangle {
             if(isH){
                 hour  = now.getHours();
                 if(hour>12){
-                    ampm = "下午"
+                    ampm = control.pmText
                     hour = hour-12
                 }else{
-                    ampm = "上午"
+                    ampm = control.amText
                 }
             }else{
                 hour = now.getHours();
             }
-            hour = text_hour.text === "时"? hour.toString().padStart(2, '0') : text_hour.text
-            var minute = text_minute.text === "分"? now.getMinutes().toString().padStart(2, '0') : text_minute.text
-            ampm = text_ampm.text === "AM/PM"?ampm:text_ampm.text
+            hour = text_hour.text === control.hourText ? hour.toString().padStart(2, '0') : text_hour.text
+            var minute = text_minute.text === control.minuteText ? now.getMinutes().toString().padStart(2, '0') : text_minute.text
+            ampm = text_ampm.text === "%1/%2".arg(control.amText).arg(control.pmText) ? ampm : text_ampm.text
             text_hour.text = hour
             text_minute.text = minute
             if(isH){
@@ -56,34 +50,27 @@ Rectangle {
         property bool changeFlag: true
         property var rowData: ["","",""]
         visible: false
-
-
     }
-    MouseArea{
-        id:mouse_area
-        hoverEnabled: true
-        anchors.fill: parent
-        onClicked: {
-            popup.showPopup()
-        }
+    onClicked: {
+        popup.showPopup()
     }
     Rectangle{
-        id:divider_1
+        id: divider_1
         width: 1
         x: isH ? parent.width/3 : parent.width/2
-        height: parent.height
+        height: parent.height-1
         color: dividerColor
     }
     Rectangle{
-        id:divider_2
+        id: divider_2
         width: 1
-        x:parent.width*2/3
-        height: parent.height
+        x: parent.width*2/3
+        height: parent.height-1
         color: dividerColor
         visible: isH
     }
     FluText{
-        id:text_hour
+        id: text_hour
         anchors{
             left: parent.left
             right: divider_1.left
@@ -92,10 +79,11 @@ Rectangle {
         }
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        text:"时"
+        text: control.hourText
+        color: control.textColor
     }
     FluText{
-        id:text_minute
+        id: text_minute
         anchors{
             left: divider_1.right
             right: isH ? divider_2.left : parent.right
@@ -104,7 +92,8 @@ Rectangle {
         }
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        text:"分"
+        text: control.minuteText
+        color: control.textColor
     }
     FluText{
         id:text_ampm
@@ -117,7 +106,8 @@ Rectangle {
         }
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        text:"AM/PM"
+        text: "%1/%2".arg(control.amText).arg(control.pmText)
+        color: control.textColor
     }
     Menu{
         id:popup
@@ -131,7 +121,7 @@ Rectangle {
                 property: "opacity"
                 from:0
                 to:1
-                duration: FluTheme.enableAnimation ? 83 : 0
+                duration: FluTheme.animationEnabled ? 83 : 0
             }
         }
         exit:Transition {
@@ -139,7 +129,7 @@ Rectangle {
                 property: "opacity"
                 from:1
                 to:0
-                duration: FluTheme.enableAnimation ? 83 : 0
+                duration: FluTheme.animationEnabled ? 83 : 0
             }
         }
         background:Item{
@@ -248,7 +238,7 @@ Rectangle {
                     Rectangle{
                         width: 1
                         height: parent.height
-                        color: dividerColor
+                        color: control.dividerColor
                     }
                     ListView{
                         id:list_view_2
@@ -271,14 +261,14 @@ Rectangle {
                     Rectangle{
                         width: 1
                         height: parent.height
-                        color: dividerColor
+                        color: control.dividerColor
                         visible: isH
                     }
                     ListView{
                         id:list_view_3
                         width: 100
                         height: 76
-                        model: ["上午","下午"]
+                        model: [control.amText,control.pmText]
                         clip: true
                         visible: isH
                         preferredHighlightBegin: 0
@@ -299,7 +289,7 @@ Rectangle {
                     width: parent.width
                     height: 1
                     anchors.top: layout_content.bottom
-                    color: dividerColor
+                    color: control.dividerColor
                 }
                 Rectangle{
                     id:layout_actions
@@ -325,7 +315,7 @@ Rectangle {
                             right: divider.left
                             verticalCenter: parent.verticalCenter
                         }
-                        text: "取消"
+                        text: control.cancelText
                         onClicked: {
                             popup.close()
                         }
@@ -338,7 +328,7 @@ Rectangle {
                             leftMargin: 10
                             verticalCenter: parent.verticalCenter
                         }
-                        text: "确定"
+                        text: control.okText
                         onClicked: {
                             d.changeFlag = false
                             popup.close()
@@ -349,9 +339,9 @@ Rectangle {
                             var hours24 = parseInt(hours);
                             if(control.hourFormat === FluTimePickerType.H){
                                 if (hours === "12") {
-                                    hours24 = (period === "上午") ? 0 : 12;
+                                    hours24 = (period === control.amText) ? 0 : 12;
                                 } else {
-                                    hours24 = (period === "上午") ? hours24 : hours24 + 12;
+                                    hours24 = (period === control.pmText) ? hours24 : hours24 + 12;
                                 }
                             }
                             date.setHours(hours24);
@@ -376,17 +366,17 @@ Rectangle {
             if(isH){
                 hour  = now.getHours();
                 if(hour>12){
-                    ampm = "下午"
+                    ampm = control.pmText
                     hour = hour-12
                 }else{
-                    ampm = "上午"
+                    ampm = control.amText
                 }
             }else{
                 hour = now.getHours();
             }
-            hour = text_hour.text === "时"? hour.toString().padStart(2, '0') : text_hour.text
-            var minute = text_minute.text === "分"? now.getMinutes().toString().padStart(2, '0') : text_minute.text
-            ampm = text_ampm.text === "AM/PM"?ampm:text_ampm.text
+            hour = text_hour.text === control.hourText ? hour.toString().padStart(2, '0') : text_hour.text
+            var minute = text_minute.text === control.minuteText ? now.getMinutes().toString().padStart(2, '0') : text_minute.text
+            ampm = text_ampm.text === "%1/%2".arg(control.amText).arg(control.pmText) ? ampm : text_ampm.text
             list_view_1.currentIndex = list_view_1.model.indexOf(hour);
             list_view_2.currentIndex = list_view_2.model.indexOf(minute);
             list_view_3.currentIndex = list_view_3.model.indexOf(ampm);

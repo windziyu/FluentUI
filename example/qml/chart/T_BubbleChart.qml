@@ -7,16 +7,16 @@ import "../component"
 
 FluScrollablePage{
 
-    title:"Bubble Chart"
+    title: qsTr("Bubble Chart")
 
     function randomScalingFactor() {
         return Math.random().toFixed(1);
     }
 
-    FluArea{
-        height: 370
-        width: 500
-        paddings: 10
+    FluFrame{
+        Layout.preferredWidth: 500
+        Layout.preferredHeight: 370
+        padding: 10
         Layout.topMargin: 20
         FluChart{
             anchors.fill: parent

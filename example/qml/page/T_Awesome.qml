@@ -6,19 +6,18 @@ import FluentUI 1.0
 
 FluContentPage {
 
-    title:"Awesome"
+    title: qsTr("Awesome")
 
     FluTextBox{
         id:text_box
-        placeholderText: "请输入关键字"
+        placeholderText: qsTr("Please enter a keyword")
         anchors{
-            topMargin: 20
             top:parent.top
         }
     }
 
     FluFilledButton{
-        text:"搜索"
+        text: qsTr("Search")
         anchors{
             left: text_box.right
             verticalCenter: text_box.verticalCenter
@@ -53,12 +52,13 @@ FluContentPage {
                 onClicked: {
                     var text  ="FluentIcons."+modelData.name;
                     FluTools.clipText(text)
-                    showSuccess("您复制了 "+text)
+                    showSuccess(qsTr("You Copied ")+text)
                 }
             }
             FluText {
                 id:item_name
                 font.pixelSize: 10
+                font.family: FluTextStyle.family
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: item_icon.bottom
                 width:parent.width

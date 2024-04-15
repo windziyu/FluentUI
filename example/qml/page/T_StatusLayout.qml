@@ -7,14 +7,13 @@ import "../component"
 
 FluScrollablePage{
 
-    title:"StatusLayout"
+    title: qsTr("StatusLayout")
 
-    FluArea{
+    FluFrame{
         id:layout_actions
         Layout.fillWidth: true
-        Layout.topMargin: 20
-        height: 50
-        paddings: 10
+        Layout.preferredHeight: 50
+        padding: 10
         RowLayout{
             spacing: 14
             FluDropDownButton{
@@ -53,16 +52,20 @@ FluScrollablePage{
         }
     }
 
-    FluArea{
+    FluFrame{
         Layout.fillWidth: true
         Layout.topMargin: 10
-        height: 380
-        paddings: 10
+        Layout.preferredHeight: 380
+        padding: 10
         FluStatusLayout{
             id:status_view
             anchors.fill: parent
+            loadingText: qsTr("Loading...")
+            emptyText: qsTr("Empty")
+            errorText: qsTr("The page went wrong...")
+            errorButtonText: qsTr("Reload")
             onErrorClicked:{
-                showError("点击重新加载")
+                showError("Click Reload")
             }
             Rectangle {
                 anchors.fill: parent
@@ -72,7 +75,7 @@ FluScrollablePage{
     }
     CodeExpander{
         Layout.fillWidth: true
-        Layout.topMargin: -1
+        Layout.topMargin: -6
         code:'FluStatusLayout{
     anchors.fill: parent
     statusMode: FluStatusLayoutType.Loading

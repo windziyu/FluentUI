@@ -45,24 +45,31 @@ T.ComboBox {
         topPadding: 6 - control.padding
         bottomPadding: 6 - control.padding
         renderType: FluTheme.nativeText ? Text.NativeRendering : Text.QtRendering
-        selectionColor: FluTools.colorAlpha(FluTheme.primaryColor,0.5)
+        selectionColor: FluTools.withOpacity(FluTheme.primaryColor,0.5)
         selectedTextColor: color
         text: control.editable ? control.editText : control.displayText
         enabled: control.editable
         autoScroll: control.editable
         font:control.font
         readOnly: control.down
-        color: FluTheme.dark ?  Qt.rgba(255/255,255/255,255/255,1) : Qt.rgba(27/255,27/255,27/255,1)
+        color: {
+            if(control.disabled) {
+                return FluTheme.dark ? Qt.rgba(131/255,131/255,131/255,1) : Qt.rgba(160/255,160/255,160/255,1)
+            }
+            return FluTheme.dark ?  Qt.rgba(255/255,255/255,255/255,1) : Qt.rgba(27/255,27/255,27/255,1)
+        }
         inputMethodHints: control.inputMethodHints
         validator: control.validator
         selectByMouse: true
         verticalAlignment: Text.AlignVCenter
-        leftInset:1
-        topInset:1
-        bottomInset:1
-        rightInset:1
         background: FluTextBoxBackground{
-            borderWidth: 0
+            border.width: 1
+            bottomMargin: {
+                if(!control.editable){
+                    return 1
+                }
+                return contentItem && contentItem.activeFocus ? 2 : 1
+            }
             inputItem: contentItem
         }
         Component.onCompleted: {
@@ -75,7 +82,6 @@ T.ComboBox {
             accepted()
         }
     }
-
     background: Rectangle {
         implicitWidth: 140
         implicitHeight: 32
@@ -95,7 +101,6 @@ T.ComboBox {
             return hovered ? hoverColor :normalColor
         }
     }
-
     popup: T.Popup {
         y: control.height
         width: control.width
@@ -117,7 +122,7 @@ T.ComboBox {
                 property: "opacity"
                 from:0
                 to:1
-                duration: FluTheme.enableAnimation ? 83 : 0
+                duration: FluTheme.animationEnabled ? 83 : 0
             }
         }
         exit:Transition {
@@ -125,7 +130,7 @@ T.ComboBox {
                 property: "opacity"
                 from:1
                 to:0
-                duration: FluTheme.enableAnimation ? 83 : 0
+                duration: FluTheme.animationEnabled ? 83 : 0
             }
         }
         background:Rectangle{

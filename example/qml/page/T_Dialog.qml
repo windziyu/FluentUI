@@ -7,16 +7,15 @@ import "../component"
 
 FluScrollablePage{
 
-    title:"Dialog"
+    title: qsTr("Dialog")
 
-    FluArea{
+    FluFrame{
         Layout.fillWidth: true
-        height: 68
-        paddings: 10
-        Layout.topMargin: 20
+        Layout.preferredHeight: 68
+        padding: 10
         FluButton{
             anchors.verticalCenter: parent.verticalCenter
-            text:"Show Double Button Dialog"
+            text: qsTr("Show Double Button Dialog")
             onClicked: {
                 double_btn_dialog.open()
             }
@@ -24,19 +23,19 @@ FluScrollablePage{
     }
     CodeExpander{
         Layout.fillWidth: true
-        Layout.topMargin: -1
+        Layout.topMargin: -6
         code:'FluContentDialog{
     id:dialog
-    title:"友情提示"
-    message:"确定要退出程序么？"
-    negativeText:"取消"
+    title: qsTr("Friendly Reminder")
+    message: qsTr("Are you sure you want to opt out?")
+    negativeText: qsTr("Cancel")
     buttonFlags: FluContentDialogType.NegativeButton | FluContentDialogType.PositiveButton
     onNegativeClicked:{
-        showSuccess("点击取消按钮")
+        showSuccess(qsTr("Click the Cancel Button"))
     }
-    positiveText:"确定"
+    positiveText: qsTr("OK")
     onPositiveClicked:{
-        showSuccess("点击确定按钮")
+        showSuccess(qsTr("Click the OK Button"))
         }
     }
     dialog.open()'
@@ -44,27 +43,27 @@ FluScrollablePage{
 
     FluContentDialog{
         id:double_btn_dialog
-        title:"友情提示"
-        message:"确定要退出程序么？"
+        title: qsTr("Friendly Reminder")
+        message: qsTr("Are you sure you want to opt out?")
         buttonFlags: FluContentDialogType.NegativeButton | FluContentDialogType.PositiveButton
-        negativeText:"取消"
-        onNegativeClicked:{
-            showSuccess("点击取消按钮")
+        negativeText: qsTr("Cancel")
+        onNegativeClicked: {
+            showSuccess(qsTr("Click the Cancel Button"))
         }
-        positiveText:"确定"
+        positiveText: qsTr("OK")
         onPositiveClicked:{
-            showSuccess("点击确定按钮")
+            showSuccess(qsTr("Click the OK Button"))
         }
     }
 
-    FluArea{
+    FluFrame{
         Layout.fillWidth: true
-        height: 68
-        paddings: 10
+        Layout.preferredHeight: 68
+        padding: 10
         Layout.topMargin: 20
         FluButton{
             anchors.verticalCenter: parent.verticalCenter
-            text:"Show Triple Button Dialog"
+            text: qsTr("Show Triple Button Dialog")
             onClicked: {
                 triple_btn_dialog.open()
             }
@@ -72,57 +71,57 @@ FluScrollablePage{
     }
     CodeExpander{
         Layout.fillWidth: true
-        Layout.topMargin: -1
+        Layout.topMargin: -6
         code:'FluContentDialog{
-    id:dialog
-    title:"友情提示"
-    message:"确定要退出程序么？"
-    negativeText:"取消"
+    id: dialog
+    title: qsTr("Friendly Reminder")
+    message: qsTr("Are you sure you want to opt out?")
+    negativeText: qsTr("Cancel")
     buttonFlags: FluContentDialogType.NeutralButton | FluContentDialogType.NegativeButton | FluContentDialogType.PositiveButton
-    negativeText:"取消"
-    onNegativeClicked:{
-        showSuccess("点击取消按钮")
+    negativeText: qsTr("Cancel")
+    onNegativeClicked: {
+        showSuccess(qsTr("Click the Cancel Button"))
     }
-    positiveText:"确定"
-    onPositiveClicked:{
-        showSuccess("点击确定按钮")
+    positiveText: qsTr("OK")
+    onPositiveClicked: {
+        showSuccess(qsTr("Click the OK Button"))
     }
-    neutralText:"最小化"
-    onNeutralClicked:{
-        showSuccess("点击最小化按钮")
+    neutralText: qsTr("Minimize")
+    onNeutralClicked: {
+        showSuccess(qsTr("Click Minimize"))
         }
     }
     dialog.open()'
     }
 
     FluContentDialog{
-        id:triple_btn_dialog
-        title:"友情提示"
-        message:"确定要退出程序么？"
+        id: triple_btn_dialog
+        title: qsTr("Friendly Reminder")
+        message: qsTr("Are you sure you want to opt out?")
         buttonFlags: FluContentDialogType.NeutralButton | FluContentDialogType.NegativeButton | FluContentDialogType.PositiveButton
-        negativeText:"取消"
-        onNegativeClicked:{
-            showSuccess("点击取消按钮")
+        negativeText: qsTr("Cancel")
+        onNegativeClicked: {
+            showSuccess(qsTr("Click the Cancel Button"))
         }
-        positiveText:"确定"
-        onPositiveClicked:{
-            showSuccess("点击确定按钮")
+        positiveText: qsTr("OK")
+        onPositiveClicked: {
+            showSuccess(qsTr("Click the OK Button"))
         }
-        neutralText:"最小化"
-        onNeutralClicked:{
-            showSuccess("点击最小化按钮")
+        neutralText: qsTr("Minimize")
+        onNeutralClicked: {
+            showSuccess(qsTr("Click Minimize"))
         }
     }
 
-    FluArea{
+    FluFrame{
         Layout.fillWidth: true
-        height: 100
-        paddings: 10
+        Layout.preferredHeight: 100
+        padding: 10
         Layout.topMargin: 20
         FluButton{
             anchors.top: parent.top
             anchors.topMargin: 5
-            text:"Custom Content Dialog"
+            text: qsTr("Custom Content Dialog")
             onClicked: {
                 custom_btn_dialog.open()
             }
@@ -130,7 +129,7 @@ FluScrollablePage{
         FluButton{
             anchors.top: parent.top
             anchors.topMargin: 48
-            text:"Custom Content Dialog2"
+            text: qsTr("Custom Content Dialog2")
             onClicked: {
                 custom_btn_dialog2.open()
             }
@@ -138,12 +137,12 @@ FluScrollablePage{
     }
     CodeExpander{
         Layout.fillWidth: true
-        Layout.topMargin: -1
+        Layout.topMargin: -6
         code:'FluContentDialog{
-    id:dialog
-    title:"友情提示"
-    message:"数据正在加载中，请稍等..."
-    negativeText:"取消加载"
+    id: dialog
+    title: qsTr("Friendly Reminder")
+    message: qsTr("Data is loading, please wait...")
+    negativeText: qsTr("Unload")
     contentDelegate: Component{
         Item{
             width: parent.width
@@ -153,22 +152,22 @@ FluScrollablePage{
             }
         }
     }
-    onNegativeClicked:{
-        showSuccess("点击取消按钮")
+    onNegativeClicked: {
+        showSuccess(qsTr("Click the Cancel Button"))
     }
-    positiveText:"确定"
-    onPositiveClicked:{
-        showSuccess("点击确定按钮")
+    positiveText :qsTr("OK")
+    onPositiveClicked: {
+        showSuccess(qsTr("Click the OK Button"))
         }
     }
     dialog.open()'
     }
 
     FluContentDialog{
-        id:custom_btn_dialog
-        title:"友情提示"
-        message:"数据正在加载中，请稍等..."
-        negativeText:"取消加载"
+        id: custom_btn_dialog
+        title: qsTr("Friendly Reminder")
+        message: qsTr("Data is loading, please wait...")
+        negativeText: qsTr("Unload")
         contentDelegate: Component{
             Item{
                 implicitWidth: parent.width
@@ -178,18 +177,18 @@ FluScrollablePage{
                 }
             }
         }
-        onNegativeClicked:{
-            showSuccess("点击取消按钮")
+        onNegativeClicked: {
+            showSuccess(qsTr("Click the Cancel Button"))
         }
-        positiveText:"确定"
-        onPositiveClicked:{
-            showSuccess("点击确定按钮")
+        positiveText: qsTr("OK")
+        onPositiveClickListener: function(){
+            showError(qsTr("Test the InfoBar level on top of the Popup"))
         }
     }
 
     FluContentDialog{
         id:custom_btn_dialog2
-        title:"折线图"
+        title: qsTr("Line Chart")
         contentDelegate: Component{
             Item{
                 implicitWidth: parent.width
@@ -224,9 +223,9 @@ FluScrollablePage{
             }
         }
         buttonFlags: FluContentDialogType.PositiveButton
-        positiveText:"确定"
-        onPositiveClicked:{
-            showSuccess("点击确定按钮")
+        positiveText: qsTr("OK")
+        onPositiveClicked: {
+            showSuccess(qsTr("Click the OK Button"))
         }
     }
 }

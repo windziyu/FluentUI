@@ -6,7 +6,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QColor>
-#include "FluColorSet.h"
+#include "FluAccentColor.h"
 #include "stdafx.h"
 #include "singleton.h"
 
@@ -17,9 +17,10 @@ class FluTheme : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool dark READ dark NOTIFY darkChanged)
-    Q_PROPERTY_AUTO(FluColorSet*,themeColor);
+    Q_PROPERTY_AUTO(FluAccentColor*,accentColor);
     Q_PROPERTY_AUTO(QColor,primaryColor);
     Q_PROPERTY_AUTO(QColor,backgroundColor);
+    Q_PROPERTY_AUTO(QColor,dividerColor);
     Q_PROPERTY_AUTO(QColor,windowBackgroundColor);
     Q_PROPERTY_AUTO(QColor,windowActiveBackgroundColor);
     Q_PROPERTY_AUTO(QColor,fontPrimaryColor);
@@ -31,7 +32,7 @@ class FluTheme : public QObject
     Q_PROPERTY_AUTO(QColor,itemCheckColor);
     Q_PROPERTY_AUTO(int,darkMode);
     Q_PROPERTY_AUTO(bool,nativeText);
-    Q_PROPERTY_AUTO(bool,enableAnimation);
+    Q_PROPERTY_AUTO(bool,animationEnabled);
     QML_NAMED_ELEMENT(FluTheme)
     QML_SINGLETON
 private:

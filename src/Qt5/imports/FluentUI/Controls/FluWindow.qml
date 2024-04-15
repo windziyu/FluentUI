@@ -5,9 +5,8 @@ import QtQuick.Layouts 1.15
 import FluentUI 1.0
 
 Window {
-    default property alias content: layout_content.data
+    default property alias contentData : layout_content.data
     property string windowIcon: FluApp.windowIcon
-    property bool closeDestory: true
     property int launchMode: FluWindowType.Standard
     property var argument:({})
     property var background : com_background
@@ -17,6 +16,7 @@ Window {
     property Item appBar: FluAppBar {
         title: window.title
         height: 30
+        width: window.width
         showDark: window.showDark
         showClose: window.showClose
         showMinimize: window.showMinimize
@@ -31,55 +31,45 @@ Window {
         return FluTheme.windowBackgroundColor
     }
     property bool stayTop: false
-    property var _pageRegister
-    property string _route
     property bool showDark: false
     property bool showClose: true
     property bool showMinimize: true
     property bool showMaximize: true
-    property bool showStayTop: true
+    property bool showStayTop: false
     property bool autoMaximize: false
     property bool autoVisible: true
     property bool autoCenter: true
+    property bool autoDestroy: true
     property bool useSystemAppBar
     property color resizeBorderColor: {
         if(window.active){
-            return FluTheme.dark ? "#333333" : "#6E6E6E"
+            return FluTheme.dark ? Qt.rgba(51/255,51/255,51/255,1) : Qt.rgba(110/255,110/255,110/255,1)
         }
-        return FluTheme.dark ? "#3D3D3E" : "#A7A7A7"
+        return FluTheme.dark ? Qt.rgba(61/255,61/255,61/255,1) : Qt.rgba(167/255,167/255,167/255,1)
     }
     property int resizeBorderWidth: 1
     property var closeListener: function(event){
-        if(closeDestory){
-            destoryOnClose()
+        if(autoDestroy){
+            FluRouter.removeWindow(window)
         }else{
-            visible = false
+            window.visibility = Window.Hidden
             event.accepted = false
         }
     }
-    signal showSystemMenu
     signal initArgument(var argument)
-    signal firstVisible()
-    property point _offsetXY : Qt.point(0,0)
-    property var _originalPos
-    property int _realHeight
-    property int _realWidth
-    property int _appBarHeight: appBar.height
+    signal lazyLoad()
+    property var _windowRegister
+    property string _route
     id:window
     color:"transparent"
     Component.onCompleted: {
-        _realHeight = height
-        _realWidth = width
+        FluRouter.addWindow(window)
         useSystemAppBar = FluApp.useSystemAppBar
-        if(useSystemAppBar && autoCenter){
+        if(!useSystemAppBar && autoCenter){
             moveWindowToDesktopCenter()
         }
         fixWindowSize()
-        lifecycle.onCompleted(window)
         initArgument(argument)
-        if(!useSystemAppBar){
-            loader_frameless_helper.sourceComponent = com_frameless_helper
-        }
         if(window.autoVisible){
             if(window.autoMaximize){
                 window.showMaximized()
@@ -88,50 +78,33 @@ Window {
             }
         }
     }
-    Component.onDestruction: {
-        lifecycle.onDestruction()
-    }
-    on_OriginalPosChanged: {
-        if(_originalPos){
-            var dx = (_originalPos.x - screen.virtualX)/screen.devicePixelRatio
-            var dy = (_originalPos.y - screen.virtualY)/screen.devicePixelRatio
-            if(dx<0 && dy<0){
-                _offsetXY = Qt.point(Math.abs(dx)-1,Math.abs(dy)-1)
-            }else{
-                _offsetXY = Qt.point(0,0)
-            }
-        }else{
-            _offsetXY = Qt.point(0,0)
-        }
-    }
-    onShowSystemMenu: {
-        if(loader_frameless_helper.item){
-            loader_frameless_helper.item.showSystemMenu()
-        }
-    }
     onVisibleChanged: {
-        if(visible && d.isFirstVisible){
-            window.firstVisible()
-            d.isFirstVisible = false
+        if(visible && d.isLazyInit){
+            window.lazyLoad()
+            d.isLazyInit = false
         }
-        lifecycle.onVisible(visible)
     }
     QtObject{
         id:d
-        property bool isFirstVisible: true
+        property bool isLazyInit: true
     }
     Connections{
         target: window
         function onClosing(event){closeListener(event)}
     }
-    Component{
-        id:com_frameless_helper
-        FluFramelessHelper{
-            onLoadCompleted:{
-                if(autoCenter){
-                    window.moveWindowToDesktopCenter()
-                }
-            }
+    FluFrameless{
+        id: frameless
+        appbar: window.appBar
+        maximizeButton: appBar.buttonMaximize
+        fixSize: window.fixSize
+        topmost: window.stayTop
+        disabled: FluApp.useSystemAppBar
+        Component.onCompleted: {
+            frameless.setHitTestVisible(appBar.layoutMacosButtons)
+            frameless.setHitTestVisible(appBar.layoutStandardbuttons)
+        }
+        Component.onDestruction: {
+            frameless.onDestruction()
         }
     }
     Component{
@@ -172,7 +145,7 @@ Window {
             Behavior on opacity {
                 SequentialAnimation {
                     PauseAnimation {
-                        duration: 88
+                        duration: 83
                     }
                     NumberAnimation{
                         duration:  167
@@ -217,106 +190,79 @@ Window {
         }
     }
     FluLoader{
-        id:loader_frameless_helper
+        anchors.fill: parent
+        sourceComponent: background
+    }
+    FluLoader{
+        id:loader_app_bar
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        height: {
+            if(window.useSystemAppBar){
+                return 0
+            }
+            return window.fitsAppBarWindows ? 0 : window.appBar.height
+        }
+        sourceComponent: window.useSystemAppBar ? undefined : com_app_bar
     }
     Item{
-        id:layout_container
+        id:layout_content
         anchors{
-            fill:parent
-            topMargin: _offsetXY.y
+            top: loader_app_bar.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
         }
-        onWidthChanged: {
-            window.appBar.width = width
-        }
-        FluLoader{
-            anchors.fill: parent
-            sourceComponent: background
-        }
-        FluLoader{
-            id:loader_app_bar
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-            }
-            height: {
-                if(window.useSystemAppBar){
-                    return 0
-                }
-                return window.fitsAppBarWindows ? 0 : window.appBar.height
-            }
-            sourceComponent: window.useSystemAppBar ? undefined : com_app_bar
-        }
-        Item{
-            id:layout_content
-            anchors{
-                top: loader_app_bar.bottom
-                left: parent.left
-                right: parent.right
-                bottom: parent.bottom
-            }
-            clip: true
-        }
-        FluLoader{
-            property string loadingText: "加载中..."
-            property bool cancel: false
-            id:loader_loading
-            anchors.fill: layout_content
-        }
-        FluInfoBar{
-            id:infoBar
-            root: window
-        }
-        FluWindowLifecycle{
-            id:lifecycle
-        }
-        FluLoader{
-            id:loader_border
-            anchors.fill: parent
-            sourceComponent: {
-                if(window.useSystemAppBar){
-                    return undefined
-                }
-                if(FluTools.isWindows10OrGreater()){
-                    return undefined
-                }
-                if(window.visibility == Window.Maximized || window.visibility == Window.FullScreen){
-                    return undefined
-                }
-                return com_border
-            }
-        }
+        clip: true
     }
-    function destoryOnClose(){
-        lifecycle.onDestoryOnClose()
+    FluLoader{
+        property string loadingText
+        property bool cancel: false
+        id:loader_loading
+        anchors.fill: parent
     }
-    function showLoading(text = "加载中...",cancel = true){
-        loader_loading.loadingText = text
-        loader_loading.cancel = cancel
-        loader_loading.sourceComponent = com_loading
+    FluInfoBar{
+        id:info_bar
+        root: window
+    }
+    FluLoader{
+        id:loader_border
+        anchors.fill: parent
+        sourceComponent: {
+            if(window.useSystemAppBar){
+                return undefined
+            }
+            if(FluTools.isWindows10OrGreater()){
+                return undefined
+            }
+            if(window.visibility === Window.Maximized || window.visibility === Window.FullScreen){
+                return undefined
+            }
+            return com_border
+        }
     }
     function hideLoading(){
         loader_loading.sourceComponent = undefined
     }
     function showSuccess(text,duration,moremsg){
-        infoBar.showSuccess(text,duration,moremsg)
+        info_bar.showSuccess(text,duration,moremsg)
     }
     function showInfo(text,duration,moremsg){
-        infoBar.showInfo(text,duration,moremsg)
+        info_bar.showInfo(text,duration,moremsg)
     }
     function showWarning(text,duration,moremsg){
-        infoBar.showWarning(text,duration,moremsg)
+        info_bar.showWarning(text,duration,moremsg)
     }
     function showError(text,duration,moremsg){
-        infoBar.showError(text,duration,moremsg)
-    }
-    function registerForWindowResult(path){
-        return lifecycle.createRegister(window,path)
+        info_bar.showError(text,duration,moremsg)
     }
     function moveWindowToDesktopCenter(){
         screen = Qt.application.screens[FluTools.cursorScreenIndex()]
-        var taskBarHeight = FluTools.getTaskBarHeight(window)
-        window.setGeometry((Screen.width-window.width)/2+Screen.virtualX,(Screen.height-window.height-taskBarHeight)/2+Screen.virtualY,window.width,window.height)
+        var availableGeometry = FluTools.desktopAvailableGeometry(window)
+        window.setGeometry((availableGeometry.width-window.width)/2+Screen.virtualX,(availableGeometry.height-window.height)/2+Screen.virtualY,window.width,window.height)
     }
     function fixWindowSize(){
         if(fixSize){
@@ -326,15 +272,26 @@ Window {
             window.minimumHeight = window.height
         }
     }
-    function onResult(data){
-        if(_pageRegister){
-            _pageRegister.onResult(data)
+    function registerForWindowResult(path){
+        return FluApp.createWindowRegister(window,path)
+    }
+    function setResult(data){
+        if(_windowRegister){
+            _windowRegister.setResult(data)
         }
     }
-    function layoutContainer(){
-        return layout_container
+    function showMaximized(){
+        frameless.showMaximized()
     }
-    function layoutContent(){
-        return layout_content
+    function showLoading(text = "",cancel = true){
+        if(text===""){
+            text = qsTr("Loading...")
+        }
+        loader_loading.loadingText = text
+        loader_loading.cancel = cancel
+        loader_loading.sourceComponent = com_loading
+    }
+    function setHitTestVisible(val){
+        frameless.setHitTestVisible(val)
     }
 }
