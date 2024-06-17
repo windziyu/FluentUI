@@ -411,27 +411,27 @@ void FluFrameless::_setMaximizeHovered(bool val) {
 
 void FluFrameless::_updateCursor(int edges) {
     switch (edges) {
-        case 0:
-            window()->setCursor(Qt::ArrowCursor);
-            break;
-        case Qt::LeftEdge:
-        case Qt::RightEdge:
-            window()->setCursor(Qt::SizeHorCursor);
-            break;
-        case Qt::TopEdge:
-        case Qt::BottomEdge:
-            window()->setCursor(Qt::SizeVerCursor);
-            break;
-        case Qt::LeftEdge | Qt::TopEdge:
-        case Qt::RightEdge | Qt::BottomEdge:
-            window()->setCursor(Qt::SizeFDiagCursor);
-            break;
-        case Qt::RightEdge | Qt::TopEdge:
-        case Qt::LeftEdge | Qt::BottomEdge:
-            window()->setCursor(Qt::SizeBDiagCursor);
-            break;
-        default:
-            break;
+    case 0:
+        window()->setCursor(Qt::ArrowCursor);
+        break;
+    case Qt::LeftEdge:
+    case Qt::RightEdge:
+        window()->setCursor(Qt::SizeHorCursor);
+        break;
+    case Qt::TopEdge:
+    case Qt::BottomEdge:
+        window()->setCursor(Qt::SizeVerCursor);
+        break;
+    case Qt::LeftEdge | Qt::TopEdge:
+    case Qt::RightEdge | Qt::BottomEdge:
+        window()->setCursor(Qt::SizeFDiagCursor);
+        break;
+    case Qt::RightEdge | Qt::TopEdge:
+    case Qt::LeftEdge | Qt::BottomEdge:
+        window()->setCursor(Qt::SizeBDiagCursor);
+        break;
+    default:
+        break;
     }
 }
 
