@@ -219,7 +219,7 @@ FluScrollablePage{
         FluLoadingButton{
             id: btn_loading
             loading: loading_button_switch.checked
-            text: qsTr("Loading Button")
+            text: loading_button_switch.checked ? qsTr("Loading") : qsTr("Loading Button")
             anchors{
                 verticalCenter: parent.verticalCenter
                 left: parent.left
@@ -235,7 +235,7 @@ FluScrollablePage{
                 right: parent.right
                 verticalCenter: parent.verticalCenter
             }
-            text: qsTr("Loading")
+            text: loading_button_switch.checked ? qsTr("Loading") : qsTr("Normal")
         }
     }
     CodeExpander{
@@ -399,16 +399,14 @@ FluScrollablePage{
                 verticalCenter: parent.verticalCenter
                 left: parent.left
             }
+            disabled: radio_button_switch.checked
             FluRadioButton{
-                disabled:radio_button_switch.checked
                 text: qsTr("Radio Button_1")
             }
             FluRadioButton{
-                disabled:radio_button_switch.checked
                 text: qsTr("Radio Button_2")
             }
             FluRadioButton{
-                disabled:radio_button_switch.checked
                 text: qsTr("Radio Button_3")
             }
         }

@@ -14,13 +14,6 @@ ProgressBar{
         id:d
         property real _radius: strokeWidth/2
     }
-    onIndeterminateChanged:{
-        if(!indeterminate){
-            animator_x.duration = 0
-            rect_progress.x = 0
-            animator_x.duration = control.duration
-        }
-    }
     background: Rectangle {
         implicitWidth: 150
         implicitHeight: control.strokeWidth
@@ -41,13 +34,20 @@ ProgressBar{
             height: parent.height
             radius: d._radius
             color: control.color
-            PropertyAnimation on x {
-                id:animator_x
+            SequentialAnimation on x {
+                id: animator_x
                 running: control.indeterminate && control.visible
-                from: -rect_progress.width
-                to:control.width+rect_progress.width
                 loops: Animation.Infinite
-                duration: control.duration
+                onRunningChanged: {
+                    if(!running){
+                        rect_progress.x = 0
+                    }
+                }
+                PropertyAnimation {
+                    from: -rect_progress.width
+                    to: control.width + rect_progress.width
+                    duration: control.duration
+                }
             }
         }
     }

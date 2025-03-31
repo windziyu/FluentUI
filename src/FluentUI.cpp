@@ -23,12 +23,14 @@
 #include "qmlcustomplot/ticker.h"
 #include "qmlcustomplot/grid.h"
 
+const char* FluentUI::_uri = "FluentUI";
+
 void FluentUI::registerTypes(QQmlEngine *engine) {
     initializeEngine(engine, _uri);
     registerTypes(_uri);
 }
 
-void FluentUI::registerTypes(const char *uri) const {
+void FluentUI::registerTypes(const char *uri) {
 #if (QT_VERSION < QT_VERSION_CHECK(6, 2, 0))
     Q_INIT_RESOURCE(fluentui);
     int major = _major;
@@ -162,31 +164,41 @@ void FluentUI::registerTypes(const char *uri) const {
     qmlRegisterUncreatableMetaObject(FluTimelineType::staticMetaObject, uri, major, minor, "FluTimelineType", "Access to enums & flags only");
     qmlRegisterUncreatableMetaObject(FluSheetType::staticMetaObject, uri, major, minor, "FluSheetType", "Access to enums & flags only");
 
-    qmlRegisterSingletonType(uri, major, minor, "FluApp", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QJSValue {
-        Q_UNUSED(engine)
-        return scriptEngine->newQObject(FluApp::getInstance());
-    });
-    qmlRegisterSingletonType(uri, major, minor, "FluColors", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QJSValue {
-        Q_UNUSED(engine)
-        return scriptEngine->newQObject(FluColors::getInstance());
-    });
-    qmlRegisterSingletonType(uri, major, minor, "FluTheme", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QJSValue {
-        Q_UNUSED(engine)
-        return scriptEngine->newQObject(FluTheme::getInstance());
-    });
-    qmlRegisterSingletonType(uri, major, minor, "FluTools", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QJSValue {
-        Q_UNUSED(engine)
-        return scriptEngine->newQObject(FluTools::getInstance());
-    });
-    qmlRegisterSingletonType(uri, major, minor, "FluTextStyle", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QJSValue {
-        Q_UNUSED(engine)
-        return scriptEngine->newQObject(FluTextStyle::getInstance());
-    });
-//    qmlRegisterSingletonInstance(uri, major, minor, "FluApp", FluApp::getInstance());
-//    qmlRegisterSingletonInstance(uri, major, minor, "FluColors", FluColors::getInstance());
-//    qmlRegisterSingletonInstance(uri, major, minor, "FluTheme", FluTheme::getInstance());
-//    qmlRegisterSingletonInstance(uri, major, minor, "FluTools", FluTools::getInstance());
-//    qmlRegisterSingletonInstance(uri, major, minor, "FluTextStyle", FluTextStyle::getInstance());
+    qmlRegisterSingletonType<FluApp>(uri, major, minor, "FluApp",
+                                     [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
+                                         Q_UNUSED(scriptEngine)
+                                         QObject *instance = FluApp::getInstance();
+                                         engine->setObjectOwnership(instance, QQmlEngine::CppOwnership);
+                                         return instance;
+                                     });
+    qmlRegisterSingletonType<FluColors>(uri, major, minor, "FluColors",
+                                        [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
+                                            Q_UNUSED(scriptEngine)
+                                            QObject *instance = FluColors::getInstance();
+                                            engine->setObjectOwnership(instance, QQmlEngine::CppOwnership);
+                                            return instance;
+                                        });
+    qmlRegisterSingletonType<FluTheme>(uri, major, minor, "FluTheme",
+                                       [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
+                                           Q_UNUSED(scriptEngine)
+                                           QObject *instance = FluTheme::getInstance();
+                                           engine->setObjectOwnership(instance, QQmlEngine::CppOwnership);
+                                           return instance;
+                                       });
+    qmlRegisterSingletonType<FluTools>(uri, major, minor, "FluTools",
+                                       [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
+                                           Q_UNUSED(scriptEngine)
+                                           QObject *instance = FluTools::getInstance();
+                                           engine->setObjectOwnership(instance, QQmlEngine::CppOwnership);
+                                           return instance;
+                                       });
+    qmlRegisterSingletonType<FluTextStyle>(uri, major, minor, "FluTextStyle",
+                                           [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
+                                               Q_UNUSED(scriptEngine)
+                                               QObject *instance = FluTextStyle::getInstance();
+                                               engine->setObjectOwnership(instance, QQmlEngine::CppOwnership);
+                                               return instance;
+                                           });
     qmlRegisterModule(uri, major, minor);
 #endif
 }
