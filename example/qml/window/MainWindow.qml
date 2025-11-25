@@ -69,6 +69,8 @@ FluWindow {
                     window.show()
                     window.raise()
                     window.requestActivate()
+                }else if(reason === SystemTrayIcon.Context){
+                    system_tray.menu.open()
                 }
             }
     }
@@ -211,6 +213,7 @@ FluWindow {
                     iconSource: FluentIcons.Search
                     items: ItemsOriginal.getSearchData()
                     placeholderText: qsTr("Search")
+                    filter: (item) => item[textRole].toLowerCase().includes(text.toLowerCase())
                     onItemClicked:
                         (data)=>{
                             ItemsOriginal.startPageByItem(data)

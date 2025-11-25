@@ -71,25 +71,9 @@ FluScrollablePage{
                 topMargin: 30
             }
             FluCheckBox{
-                property int count: 1
                 text: qsTr("Three State")
                 disabled: check_box_switch_three.checked
-                clickListener: function(){
-                    var flag = count%3
-                    if(flag === 0){
-                        checked = false
-                        indeterminate = false
-                    }
-                    if(flag === 1){
-                        checked = true
-                        indeterminate = false
-                    }
-                    if(flag === 2){
-                        checked = true
-                        indeterminate = true
-                    }
-                    count++
-                }
+                tristate: true
             }
         }
         FluToggleSwitch{
@@ -106,8 +90,37 @@ FluScrollablePage{
         Layout.topMargin: -6
         code:'FluCheckBox{
     text:"Text"
-    indeterminate:true
+    tristate: true
 }'
     }
 
+    FluFrame{
+        Layout.fillWidth: true
+        padding: 10
+        Layout.topMargin: 20
+
+        ColumnLayout {
+            FluText{
+                text: qsTr("Using a 3-state CheckBox")
+            }
+            ButtonGroup {
+                id: group
+                exclusive: false
+                checkState: check_box_all.checkState
+            }
+            FluCheckBox {
+                id: check_box_all
+                text: qsTr("Select all")
+                checkState: group.checkState
+            }
+            Repeater {
+                model: 3
+                FluCheckBox {
+                    Layout.leftMargin: 24
+                    text: qsTr("Option %1").arg(index)
+                    ButtonGroup.group: group
+                }
+            }
+        }
+    }
 }

@@ -70,17 +70,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/CrashWindow.qml" line="50"/>
+        <location filename="qml/window/CrashWindow.qml" line="53"/>
         <source>We apologize for the inconvenience caused by an unexpected error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/CrashWindow.qml" line="62"/>
+        <location filename="qml/window/CrashWindow.qml" line="65"/>
         <source>Report Logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/CrashWindow.qml" line="72"/>
+        <location filename="qml/window/CrashWindow.qml" line="75"/>
         <source>Restart Program</source>
         <translation type="unfinished"></translation>
     </message>
@@ -349,238 +349,258 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="222"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="220"/>
+        <source>BubbleBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/global/ItemsOriginal.qml" line="228"/>
         <source>Layout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="225"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="231"/>
         <source>StaggeredLayout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="231"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="237"/>
         <source>SplitLayout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="237"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="243"/>
         <source>StatusLayout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="245"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="251"/>
         <source>Popus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="248"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="254"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="255"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="261"/>
         <source>ComboBox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="269"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="275"/>
         <source>Tooltip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="275"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="281"/>
         <source>Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="281"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="287"/>
         <source>Sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="289"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="295"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="292"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="298"/>
         <source>Pivot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="294"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="300"/>
         <source>Presents information from different sources in a tabbed view.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="299"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="305"/>
         <source>BreadcrumbBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="305"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="311"/>
         <source>TabView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="307"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="313"/>
         <source>A control that displays a collection of tabs thatcan be used to display several documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="312"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="318"/>
         <source>TreeView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="318"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="324"/>
         <source>TableView</source>
         <oldsource>TreeView2</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="320"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="326"/>
         <source>The TableView control provides a flexible way to display a collection of data in rows and columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="325"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="331"/>
         <source>Pagination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="331"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="337"/>
         <source>MultiWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="337"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="343"/>
         <source>FlipView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="339"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="345"/>
         <source>Presents a collection of items that the user canflip through, one item at a time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="346"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="350"/>
+        <source>ParallaxView</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/global/ItemsOriginal.qml" line="358"/>
         <source>Theming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="349"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="361"/>
         <source>Acrylic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="355"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="367"/>
         <source>Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="361"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="373"/>
         <source>Typography</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="367"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="379"/>
         <source>Icons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="375"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="387"/>
         <source>Chart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="378"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="390"/>
         <source>Bar Chart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="384"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="396"/>
         <source>Line Chart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="390"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="402"/>
         <source>Pie Chart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="396"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="408"/>
         <source>Polar Area Chart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="402"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="414"/>
         <source>Bubble Chart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="408"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="420"/>
         <source>Scatter Chart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="414"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="426"/>
         <source>Radar Chart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="427"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="439"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="430"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="442"/>
         <source>OpenGL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="436"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="448"/>
         <source>QCustomPlot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="442"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="454"/>
         <source>QRCode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="448"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="460"/>
         <source>Tour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="454"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="466"/>
         <source>Timeline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="460"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="472"/>
+        <source>Pinyin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/global/ItemsOriginal.qml" line="478"/>
+        <source>CountTimer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/global/ItemsOriginal.qml" line="484"/>
         <source>Captcha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="466"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="490"/>
         <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="473"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="497"/>
         <source>Remote Loader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="487"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="511"/>
         <source>Hot Loader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/global/ItemsOriginal.qml" line="493"/>
+        <location filename="qml/global/ItemsOriginal.qml" line="517"/>
         <source>Test Crash</source>
         <translation type="unfinished"></translation>
     </message>
@@ -612,104 +632,104 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="86"/>
-        <location filename="qml/window/MainWindow.qml" line="94"/>
+        <location filename="qml/window/MainWindow.qml" line="88"/>
+        <location filename="qml/window/MainWindow.qml" line="96"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="87"/>
+        <location filename="qml/window/MainWindow.qml" line="89"/>
         <source>Are you sure you want to exit the program?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="88"/>
+        <location filename="qml/window/MainWindow.qml" line="90"/>
         <source>Minimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="91"/>
+        <location filename="qml/window/MainWindow.qml" line="93"/>
         <source>Friendly Reminder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="91"/>
+        <location filename="qml/window/MainWindow.qml" line="93"/>
         <source>FluentUI is hidden from the tray, click on the tray to activate the window again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="95"/>
-        <location filename="qml/window/MainWindow.qml" line="337"/>
+        <location filename="qml/window/MainWindow.qml" line="97"/>
+        <location filename="qml/window/MainWindow.qml" line="340"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="106"/>
+        <location filename="qml/window/MainWindow.qml" line="108"/>
         <source>Open in Separate Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="203"/>
+        <location filename="qml/window/MainWindow.qml" line="205"/>
         <source>Click Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="213"/>
+        <location filename="qml/window/MainWindow.qml" line="215"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="302"/>
+        <location filename="qml/window/MainWindow.qml" line="305"/>
         <source>Finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="303"/>
+        <location filename="qml/window/MainWindow.qml" line="306"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="304"/>
+        <location filename="qml/window/MainWindow.qml" line="307"/>
         <source>Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="308"/>
+        <location filename="qml/window/MainWindow.qml" line="311"/>
         <source>Dark Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="308"/>
+        <location filename="qml/window/MainWindow.qml" line="311"/>
         <source>Here you can switch to night mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="310"/>
+        <location filename="qml/window/MainWindow.qml" line="313"/>
         <source>Hide Easter eggs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="310"/>
+        <location filename="qml/window/MainWindow.qml" line="313"/>
         <source>Try a few more clicks!!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="334"/>
+        <location filename="qml/window/MainWindow.qml" line="337"/>
         <source>Upgrade Tips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="335"/>
+        <location filename="qml/window/MainWindow.qml" line="338"/>
         <source>FluentUI is currently up to date </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="335"/>
+        <location filename="qml/window/MainWindow.qml" line="338"/>
         <source> -- The current app version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="335"/>
+        <location filename="qml/window/MainWindow.qml" line="338"/>
         <source> 
 Now go and download the new version？
 
@@ -718,17 +738,17 @@ Updated content:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="338"/>
+        <location filename="qml/window/MainWindow.qml" line="341"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="365"/>
+        <location filename="qml/window/MainWindow.qml" line="368"/>
         <source>The current version is already the latest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/window/MainWindow.qml" line="372"/>
+        <location filename="qml/window/MainWindow.qml" line="375"/>
         <source>The network is abnormal</source>
         <translation type="unfinished"></translation>
     </message>
@@ -897,6 +917,55 @@ Updated content:
     </message>
 </context>
 <context>
+    <name>T_BubbleBox</name>
+    <message>
+        <location filename="qml/page/T_BubbleBox.qml" line="10"/>
+        <location filename="qml/page/T_BubbleBox.qml" line="97"/>
+        <source>BubbleBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_BubbleBox.qml" line="23"/>
+        <source>bubblebox offset:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_BubbleBox.qml" line="35"/>
+        <source>traingle offset:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_BubbleBox.qml" line="47"/>
+        <source>direction:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_BubbleBox.qml" line="55"/>
+        <source>top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_BubbleBox.qml" line="59"/>
+        <source>right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_BubbleBox.qml" line="63"/>
+        <source>bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_BubbleBox.qml" line="67"/>
+        <source>left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_BubbleBox.qml" line="83"/>
+        <source>Standard Button</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>T_BubbleChart</name>
     <message>
         <location filename="qml/chart/T_BubbleChart.qml" line="10"/>
@@ -929,7 +998,7 @@ Updated content:
         <location filename="qml/page/T_Buttons.qml" line="199"/>
         <location filename="qml/page/T_Buttons.qml" line="320"/>
         <location filename="qml/page/T_Buttons.qml" line="368"/>
-        <location filename="qml/page/T_Buttons.qml" line="419"/>
+        <location filename="qml/page/T_Buttons.qml" line="420"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1055,12 +1124,12 @@ Updated content:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_Buttons.qml" line="407"/>
+        <location filename="qml/page/T_Buttons.qml" line="408"/>
         <source>Radio Button_2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_Buttons.qml" line="410"/>
+        <location filename="qml/page/T_Buttons.qml" line="411"/>
         <source>Radio Button_3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1119,12 +1188,52 @@ Updated content:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_Carousel.qml" line="36"/>
+        <location filename="qml/page/T_Carousel.qml" line="34"/>
         <source>Carousel map, support infinite carousel, infinite swipe, and components implemented with ListView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_Carousel.qml" line="203"/>
+        <location filename="qml/page/T_Carousel.qml" line="38"/>
+        <source>Play orientation:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Carousel.qml" line="46"/>
+        <source>Horizontal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Carousel.qml" line="50"/>
+        <source>Vertical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Carousel.qml" line="56"/>
+        <source>Indicator position:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Carousel.qml" line="63"/>
+        <source>top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Carousel.qml" line="69"/>
+        <source>right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Carousel.qml" line="66"/>
+        <source>bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Carousel.qml" line="72"/>
+        <source>left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Carousel.qml" line="79"/>
         <source>Auto play</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1153,7 +1262,7 @@ Updated content:
     </message>
     <message>
         <location filename="qml/page/T_CheckBox.qml" line="46"/>
-        <location filename="qml/page/T_CheckBox.qml" line="101"/>
+        <location filename="qml/page/T_CheckBox.qml" line="85"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1163,8 +1272,23 @@ Updated content:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_CheckBox.qml" line="75"/>
+        <location filename="qml/page/T_CheckBox.qml" line="74"/>
         <source>Three State</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_CheckBox.qml" line="104"/>
+        <source>Using a 3-state CheckBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_CheckBox.qml" line="113"/>
+        <source>Select all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_CheckBox.qml" line="120"/>
+        <source>Option %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1255,6 +1379,29 @@ Updated content:
             model.append({text: editText})
     }
 }</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>T_CountTimer</name>
+    <message>
+        <location filename="qml/page/T_CountTimer.qml" line="10"/>
+        <source>CountTimer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_CountTimer.qml" line="27"/>
+        <source>Countdown milliseconds: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_CountTimer.qml" line="39"/>
+        <source>Countdown seconds: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_CountTimer.qml" line="67"/>
+        <source>Countup seconds: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1871,10 +2018,72 @@ My only desire is to be permitted to drive out the traitors and restore the Han.
     </message>
 </context>
 <context>
+    <name>T_ParallaxView</name>
+    <message>
+        <location filename="qml/page/T_ParallaxView.qml" line="10"/>
+        <source>ParallaxView</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_ParallaxView.qml" line="22"/>
+        <source>Background size mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_ParallaxView.qml" line="30"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_ParallaxView.qml" line="34"/>
+        <source>Cover</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_ParallaxView.qml" line="38"/>
+        <source>Fixed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_ParallaxView.qml" line="46"/>
+        <source>Speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>T_PieChart</name>
     <message>
         <location filename="qml/chart/T_PieChart.qml" line="10"/>
         <source>Pie Chart</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>T_Pinyin</name>
+    <message>
+        <location filename="qml/page/T_Pinyin.qml" line="10"/>
+        <source>Pinyin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Pinyin.qml" line="47"/>
+        <source>[pinyin-pro document](https://pinyin-pro.cn/guide/compare.html)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Pinyin.qml" line="89"/>
+        <location filename="qml/page/T_Pinyin.qml" line="151"/>
+        <source>Input Chinese or Pinyin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Pinyin.qml" line="170"/>
+        <source>Matching time: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Pinyin.qml" line="175"/>
+        <source>Matching with cache</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1991,41 +2200,37 @@ My only desire is to be permitted to drive out the traitors and restore the Han.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_RadioButton.qml" line="24"/>
+        <location filename="qml/page/T_RadioButton.qml" line="28"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_RadioButton.qml" line="28"/>
+        <location filename="qml/page/T_RadioButton.qml" line="33"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_RadioButton.qml" line="38"/>
-        <location filename="qml/page/T_RadioButton.qml" line="79"/>
-        <location filename="qml/page/T_RadioButton.qml" line="130"/>
-        <location filename="qml/page/T_RadioButton.qml" line="181"/>
+        <location filename="qml/page/T_RadioButton.qml" line="44"/>
+        <location filename="qml/page/T_RadioButton.qml" line="105"/>
+        <location filename="qml/page/T_RadioButton.qml" line="160"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_RadioButton.qml" line="64"/>
-        <location filename="qml/page/T_RadioButton.qml" line="115"/>
-        <location filename="qml/page/T_RadioButton.qml" line="166"/>
+        <location filename="qml/page/T_RadioButton.qml" line="86"/>
+        <location filename="qml/page/T_RadioButton.qml" line="144"/>
         <source>Radio Button_1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_RadioButton.qml" line="67"/>
-        <location filename="qml/page/T_RadioButton.qml" line="118"/>
-        <location filename="qml/page/T_RadioButton.qml" line="169"/>
+        <location filename="qml/page/T_RadioButton.qml" line="90"/>
+        <location filename="qml/page/T_RadioButton.qml" line="147"/>
         <source>Radio Button_2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_RadioButton.qml" line="70"/>
-        <location filename="qml/page/T_RadioButton.qml" line="121"/>
-        <location filename="qml/page/T_RadioButton.qml" line="172"/>
+        <location filename="qml/page/T_RadioButton.qml" line="95"/>
+        <location filename="qml/page/T_RadioButton.qml" line="151"/>
         <source>Radio Button_3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2347,108 +2552,108 @@ Some contents...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="72"/>
+        <location filename="qml/page/T_TableView.qml" line="65"/>
         <source>Modify the column name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="73"/>
+        <location filename="qml/page/T_TableView.qml" line="66"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="91"/>
+        <location filename="qml/page/T_TableView.qml" line="84"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="133"/>
+        <location filename="qml/page/T_TableView.qml" line="126"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="176"/>
-        <location filename="qml/page/T_TableView.qml" line="503"/>
+        <location filename="qml/page/T_TableView.qml" line="169"/>
+        <location filename="qml/page/T_TableView.qml" line="493"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="210"/>
+        <location filename="qml/page/T_TableView.qml" line="203"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="217"/>
+        <location filename="qml/page/T_TableView.qml" line="210"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="236"/>
+        <location filename="qml/page/T_TableView.qml" line="229"/>
         <source>Select All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="359"/>
+        <location filename="qml/page/T_TableView.qml" line="348"/>
         <source>Age</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="434"/>
+        <location filename="qml/page/T_TableView.qml" line="423"/>
         <source>Clear All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="441"/>
+        <location filename="qml/page/T_TableView.qml" line="430"/>
         <source>Delete Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="464"/>
+        <location filename="qml/page/T_TableView.qml" line="453"/>
         <source>Add a row of Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="470"/>
+        <location filename="qml/page/T_TableView.qml" line="459"/>
         <source>Insert a Row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="477"/>
+        <location filename="qml/page/T_TableView.qml" line="466"/>
         <source>Focus not acquired: Please click any item in the form as the target for insertion!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="508"/>
+        <location filename="qml/page/T_TableView.qml" line="498"/>
         <source>Avatar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="522"/>
+        <location filename="qml/page/T_TableView.qml" line="512"/>
         <source>Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="530"/>
+        <location filename="qml/page/T_TableView.qml" line="520"/>
         <source>Nickname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="537"/>
+        <location filename="qml/page/T_TableView.qml" line="527"/>
         <source>Long String</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="545"/>
+        <location filename="qml/page/T_TableView.qml" line="535"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="563"/>
+        <location filename="qml/page/T_TableView.qml" line="553"/>
         <source>&lt;Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_TableView.qml" line="564"/>
+        <location filename="qml/page/T_TableView.qml" line="554"/>
         <source>Next&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2487,8 +2692,8 @@ Some contents...</source>
         <location filename="qml/page/T_TextBox.qml" line="33"/>
         <location filename="qml/page/T_TextBox.qml" line="64"/>
         <location filename="qml/page/T_TextBox.qml" line="97"/>
-        <location filename="qml/page/T_TextBox.qml" line="128"/>
-        <location filename="qml/page/T_TextBox.qml" line="157"/>
+        <location filename="qml/page/T_TextBox.qml" line="135"/>
+        <location filename="qml/page/T_TextBox.qml" line="168"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2505,6 +2710,11 @@ Some contents...</source>
     <message>
         <location filename="qml/page/T_TextBox.qml" line="114"/>
         <source>AutoSuggestBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_TextBox.qml" line="131"/>
+        <source>Show suggest when pressed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2566,11 +2776,6 @@ Some contents...</source>
         <location filename="qml/page/T_Theme.qml" line="135"/>
         <source>window effect</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/page/T_Theme.qml" line="178"/>
-        <source></source>
-        <translation></translation>
     </message>
 </context>
 <context>
@@ -2732,49 +2937,60 @@ Some contents...</source>
     <name>T_Tour</name>
     <message>
         <location filename="qml/page/T_Tour.qml" line="15"/>
+        <location filename="qml/page/T_Tour.qml" line="23"/>
         <source>Upload File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qml/page/T_Tour.qml" line="15"/>
+        <location filename="qml/page/T_Tour.qml" line="23"/>
         <source>Put your files here.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qml/page/T_Tour.qml" line="16"/>
-        <location filename="qml/page/T_Tour.qml" line="52"/>
-        <location filename="qml/page/T_Tour.qml" line="54"/>
+        <location filename="qml/page/T_Tour.qml" line="24"/>
+        <location filename="qml/page/T_Tour.qml" line="74"/>
+        <location filename="qml/page/T_Tour.qml" line="76"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qml/page/T_Tour.qml" line="16"/>
+        <location filename="qml/page/T_Tour.qml" line="24"/>
         <source>Save your changes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qml/page/T_Tour.qml" line="17"/>
+        <location filename="qml/page/T_Tour.qml" line="25"/>
         <source>Other Actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qml/page/T_Tour.qml" line="17"/>
+        <location filename="qml/page/T_Tour.qml" line="25"/>
         <source>Click to see other actions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_Tour.qml" line="31"/>
+        <location filename="qml/page/T_Tour.qml" line="46"/>
         <source>Begin Tour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_Tour.qml" line="45"/>
-        <location filename="qml/page/T_Tour.qml" line="47"/>
+        <location filename="qml/page/T_Tour.qml" line="52"/>
+        <source>Begin Tour with custom indicator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/page/T_Tour.qml" line="67"/>
+        <location filename="qml/page/T_Tour.qml" line="69"/>
         <source>Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/page/T_Tour.qml" line="61"/>
+        <location filename="qml/page/T_Tour.qml" line="83"/>
         <source>More</source>
         <translation type="unfinished"></translation>
     </message>

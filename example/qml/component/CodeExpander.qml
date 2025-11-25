@@ -140,6 +140,9 @@ FluExpander{
                     "FluRouter",
                     "FluGroupBox",
                     "FluSheet",
+                    "FluBubbleBox",
+                    "FluCountTimer",
+                    "FluParallaxView"
                 ];
         code = code.replace(/\n/g, "<br>");
         code = code.replace(/ /g, "&nbsp;");

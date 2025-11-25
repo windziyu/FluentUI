@@ -45,6 +45,12 @@ Module {
             name: "iconData"
             type: "QJsonArray"
             Parameter { name: "keyword"; type: "string" }
+            Parameter { name: "caseSensitive"; type: "bool" }
+        }
+        Method {
+            name: "iconData"
+            type: "QJsonArray"
+            Parameter { name: "keyword"; type: "string" }
         }
         Method { name: "iconData"; type: "QJsonArray" }
     }
@@ -136,6 +142,37 @@ Module {
                 "PositiveButton": 4
             }
         }
+    }
+    Component {
+        name: "FluCountTimer"
+        prototype: "QObject"
+        exports: ["FluentUI/FluCountTimer 1.0"]
+        exportMetaObjectRevisions: [0]
+        Enum {
+            name: "CountType"
+            values: {
+                "Countdown": 0,
+                "Countup": 1
+            }
+        }
+        Property { name: "countType"; type: "CountType" }
+        Property { name: "value"; type: "int" }
+        Property { name: "interval"; type: "int" }
+        Property { name: "running"; type: "bool" }
+        Property { name: "format"; type: "string" }
+        Property { name: "hour"; type: "int"; isReadonly: true }
+        Property { name: "minute"; type: "int"; isReadonly: true }
+        Property { name: "second"; type: "int"; isReadonly: true }
+        Property { name: "millisecond"; type: "int"; isReadonly: true }
+        Property { name: "time"; type: "string"; isReadonly: true }
+        Signal { name: "finished" }
+        Method { name: "start" }
+        Method { name: "stop" }
+        Method {
+            name: "reset"
+            Parameter { name: "baseValue"; type: "int" }
+        }
+        Method { name: "reset" }
     }
     Component {
         name: "FluFrameless"
@@ -231,6 +268,10 @@ Module {
         exportMetaObjectRevisions: [0]
         Property { name: "color"; type: "QColor" }
         Property { name: "radius"; type: "QList<int>" }
+        Property { name: "borderWidth"; type: "double" }
+        Property { name: "borderColor"; type: "QColor" }
+        Property { name: "borderStyle"; type: "Qt::PenStyle" }
+        Property { name: "dashPattern"; type: "QVector<qreal>" }
     }
     Component {
         name: "FluSheetType"
@@ -2746,37 +2787,37 @@ Module {
         Property { name: "darkClickListener"; type: "QVariant" }
         Property {
             name: "buttonStayTop"
-            type: "FluIconButton_QMLTYPE_19"
+            type: "FluIconButton_QMLTYPE_22"
             isReadonly: true
             isPointer: true
         }
         Property {
             name: "buttonMinimize"
-            type: "FluIconButton_QMLTYPE_19"
+            type: "FluIconButton_QMLTYPE_22"
             isReadonly: true
             isPointer: true
         }
         Property {
             name: "buttonMaximize"
-            type: "FluIconButton_QMLTYPE_19"
+            type: "FluIconButton_QMLTYPE_22"
             isReadonly: true
             isPointer: true
         }
         Property {
             name: "buttonClose"
-            type: "FluIconButton_QMLTYPE_19"
+            type: "FluIconButton_QMLTYPE_22"
             isReadonly: true
             isPointer: true
         }
         Property {
             name: "buttonDark"
-            type: "FluIconButton_QMLTYPE_19"
+            type: "FluIconButton_QMLTYPE_22"
             isReadonly: true
             isPointer: true
         }
         Property {
             name: "layoutMacosButtons"
-            type: "FluLoader_QMLTYPE_14"
+            type: "FluLoader_QMLTYPE_16"
             isReadonly: true
             isPointer: true
         }
@@ -2797,12 +2838,16 @@ Module {
         Property { name: "items"; type: "QVariant" }
         Property { name: "emptyText"; type: "string" }
         Property { name: "autoSuggestBoxReplacement"; type: "int" }
+        Property { name: "itemHeight"; type: "int" }
+        Property { name: "itemRows"; type: "int" }
+        Property { name: "showSuggestWhenPressed"; type: "bool" }
         Property { name: "textRole"; type: "string" }
         Property { name: "filter"; type: "QVariant" }
         Signal {
             name: "itemClicked"
             Parameter { name: "data"; type: "QVariant" }
         }
+        Method { name: "showSuggest"; type: "QVariant" }
         Method {
             name: "updateText"
             type: "QVariant"
@@ -2830,8 +2875,9 @@ Module {
         defaultProperty: "data"
         Property { name: "isDot"; type: "bool" }
         Property { name: "showZero"; type: "bool" }
-        Property { name: "count"; type: "int" }
-        Property { name: "topRight"; type: "bool" }
+        Property { name: "count"; type: "QVariant" }
+        Property { name: "max"; type: "int" }
+        Property { name: "position"; type: "string" }
     }
     Component {
         prototype: "QQuickItem"
@@ -2855,6 +2901,25 @@ Module {
             Parameter { name: "count"; type: "QVariant" }
         }
         Method { name: "count"; type: "QVariant" }
+    }
+    Component {
+        prototype: "QQuickRectangle"
+        name: "FluentUI/FluBubbleBox 1.0"
+        exports: ["FluentUI/FluBubbleBox 1.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "attachTarget"; type: "QQuickItem"; isPointer: true }
+        Property { name: "attachDirection"; type: "string" }
+        Property { name: "attachMargin"; type: "double" }
+        Property { name: "targetAlignRatio"; type: "double" }
+        Property { name: "targetX"; type: "QVariant" }
+        Property { name: "targetY"; type: "QVariant" }
+        Property { name: "triangleOffsetRatio"; type: "double" }
+        Property { name: "triangleDirection"; type: "string"; isReadonly: true }
+        Property { name: "triangleItem"; type: "QQuickShape"; isReadonly: true; isPointer: true }
+        Property { name: "triangleWidth"; type: "double" }
+        Property { name: "triangleHeight"; type: "double" }
     }
     Component {
         prototype: "QQuickButton"
@@ -2935,7 +3000,7 @@ Module {
         Method { name: "animateToNewData"; type: "QVariant" }
     }
     Component {
-        prototype: "QQuickButton"
+        prototype: "QQuickCheckBox"
         name: "FluentUI/FluCheckBox 1.0"
         exports: ["FluentUI/FluCheckBox 1.0"]
         exportMetaObjectRevisions: [0]
@@ -2955,13 +3020,11 @@ Module {
         Property { name: "checkedPreesedColor"; type: "QColor" }
         Property { name: "checkedDisableColor"; type: "QColor" }
         Property { name: "disableColor"; type: "QColor" }
-        Property { name: "size"; type: "double" }
         Property { name: "textColor"; type: "QColor" }
+        Property { name: "size"; type: "double" }
         Property { name: "textRight"; type: "bool" }
-        Property { name: "textSpacing"; type: "double" }
         Property { name: "animationEnabled"; type: "bool" }
         Property { name: "clickListener"; type: "QVariant" }
-        Property { name: "indeterminate"; type: "bool" }
     }
     Component {
         prototype: "FluRectangle"
@@ -3472,15 +3535,15 @@ Module {
         defaultProperty: "data"
         Property { name: "logo"; type: "QUrl" }
         Property { name: "title"; type: "string" }
-        Property { name: "items"; type: "FluObject_QMLTYPE_182"; isPointer: true }
-        Property { name: "footerItems"; type: "FluObject_QMLTYPE_182"; isPointer: true }
+        Property { name: "items"; type: "FluObject_QMLTYPE_187"; isPointer: true }
+        Property { name: "footerItems"; type: "FluObject_QMLTYPE_187"; isPointer: true }
         Property { name: "displayMode"; type: "int" }
         Property { name: "autoSuggestBox"; type: "QQmlComponent"; isPointer: true }
         Property { name: "actionItem"; type: "QQmlComponent"; isPointer: true }
         Property { name: "topPadding"; type: "int" }
         Property { name: "pageMode"; type: "int" }
-        Property { name: "navItemRightMenu"; type: "FluMenu_QMLTYPE_47"; isPointer: true }
-        Property { name: "navItemExpanderRightMenu"; type: "FluMenu_QMLTYPE_47"; isPointer: true }
+        Property { name: "navItemRightMenu"; type: "FluMenu_QMLTYPE_48"; isPointer: true }
+        Property { name: "navItemExpanderRightMenu"; type: "FluMenu_QMLTYPE_48"; isPointer: true }
         Property { name: "navCompactWidth"; type: "int" }
         Property { name: "navTopMargin"; type: "int" }
         Property { name: "cellHeight"; type: "int" }
@@ -3488,13 +3551,13 @@ Module {
         Property { name: "hideNavAppBar"; type: "bool" }
         Property {
             name: "buttonMenu"
-            type: "FluIconButton_QMLTYPE_19"
+            type: "FluIconButton_QMLTYPE_22"
             isReadonly: true
             isPointer: true
         }
         Property {
             name: "buttonBack"
-            type: "FluIconButton_QMLTYPE_19"
+            type: "FluIconButton_QMLTYPE_22"
             isReadonly: true
             isPointer: true
         }
@@ -3654,6 +3717,26 @@ Module {
         Property { name: "size"; type: "int" }
     }
     Component {
+        prototype: "FluRectangle"
+        name: "FluentUI/FluParallaxView 1.0"
+        exports: ["FluentUI/FluParallaxView 1.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "content"
+        Property { name: "backgroundSizeMode"; type: "string" }
+        Property { name: "backgroundMinHeight"; type: "double" }
+        Property { name: "speed"; type: "double" }
+        Property { name: "content"; type: "QObject"; isList: true; isReadonly: true }
+        Property { name: "spacing"; type: "double" }
+        Property { name: "backgroundItem"; type: "QQmlComponent"; isPointer: true }
+        Property {
+            name: "backgroundAcrylic"
+            type: "FluAcrylic_QMLTYPE_12"
+            isReadonly: true
+            isPointer: true
+        }
+    }
+    Component {
         prototype: "QQuickTextField"
         name: "FluentUI/FluPasswordBox 1.0"
         exports: ["FluentUI/FluPasswordBox 1.0"]
@@ -3670,6 +3753,104 @@ Module {
         Signal {
             name: "commit"
             Parameter { name: "text"; type: "string" }
+        }
+    }
+    Component {
+        prototype: "QObject"
+        name: "FluentUI/FluPinyin 1.0"
+        exports: ["FluentUI/FluPinyin 1.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        isCreatable: false
+        isSingleton: true
+        Property { name: "children"; type: "QObject"; isList: true; isReadonly: true }
+        Property { name: "context"; type: "QVariant"; isReadonly: true }
+        Property { name: "outputFormat"; type: "QVariant"; isReadonly: true }
+        Property { name: "isPatternBuilt"; type: "bool"; isReadonly: true }
+        Method {
+            name: "buildDefaultPatterns"
+            type: "QVariant"
+            Parameter { name: "buildArg"; type: "QVariant" }
+        }
+        Method {
+            name: "addDict"
+            type: "QVariant"
+            Parameter { name: "dict"; type: "QVariant" }
+            Parameter { name: "options"; type: "QVariant" }
+        }
+        Method {
+            name: "clearCustomDict"
+            type: "QVariant"
+            Parameter { name: "dict"; type: "QVariant" }
+        }
+        Method {
+            name: "convert"
+            type: "QVariant"
+            Parameter { name: "pinyin"; type: "QVariant" }
+            Parameter { name: "options"; type: "QVariant" }
+        }
+        Method {
+            name: "customPinyin"
+            type: "QVariant"
+            Parameter { name: "config"; type: "QVariant" }
+            Parameter { name: "options"; type: "QVariant" }
+        }
+        Method {
+            name: "html"
+            type: "QVariant"
+            Parameter { name: "text"; type: "QVariant" }
+            Parameter { name: "options"; type: "QVariant" }
+        }
+        Method {
+            name: "match"
+            type: "QVariant"
+            Parameter { name: "text"; type: "QVariant" }
+            Parameter { name: "pinyin"; type: "QVariant" }
+            Parameter { name: "options"; type: "QVariant" }
+        }
+        Method {
+            name: "pinyin"
+            type: "QVariant"
+            Parameter { name: "word"; type: "QVariant" }
+            Parameter { name: "options"; type: "QVariant" }
+        }
+        Method {
+            name: "removeDict"
+            type: "QVariant"
+            Parameter { name: "dictName"; type: "QVariant" }
+        }
+        Method {
+            name: "segment"
+            type: "QVariant"
+            Parameter { name: "word"; type: "QVariant" }
+            Parameter { name: "options"; type: "QVariant" }
+        }
+        Method {
+            name: "createCache"
+            type: "QVariant"
+            Parameter { name: "data"; type: "QVariant" }
+            Parameter { name: "options"; type: "QVariant" }
+            Parameter { name: "buildCache"; type: "QVariant" }
+        }
+        Method {
+            name: "rebuildCache"
+            type: "QVariant"
+            Parameter { name: "cache"; type: "QVariant" }
+            Parameter { name: "data"; type: "QVariant" }
+            Parameter { name: "asyncArg"; type: "QVariant" }
+        }
+        Method {
+            name: "hasPinyinMatch"
+            type: "QVariant"
+            Parameter { name: "cache"; type: "QVariant" }
+            Parameter { name: "item"; type: "QVariant" }
+            Parameter { name: "pinyin"; type: "QVariant" }
+        }
+        Method {
+            name: "findMatches"
+            type: "QVariant"
+            Parameter { name: "cache"; type: "QVariant" }
+            Parameter { name: "pinyin"; type: "QVariant" }
         }
     }
     Component {
@@ -3763,7 +3944,7 @@ Module {
         Property { name: "bgColor"; type: "QColor" }
     }
     Component {
-        prototype: "QQuickButton"
+        prototype: "QQuickRadioButton"
         name: "FluentUI/FluRadioButton 1.0"
         exports: ["FluentUI/FluRadioButton 1.0"]
         exportMetaObjectRevisions: [0]
@@ -3779,7 +3960,6 @@ Module {
         Property { name: "textColor"; type: "QColor" }
         Property { name: "size"; type: "double" }
         Property { name: "textRight"; type: "bool" }
-        Property { name: "textSpacing"; type: "double" }
         Property { name: "clickListener"; type: "QVariant" }
     }
     Component {
@@ -4079,12 +4259,13 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "sourceModel"; type: "QVariant" }
+        Property { name: "sourceModel"; type: "FluTableModel"; isPointer: true }
         Property { name: "columnSource"; type: "QVariant" }
         Property { name: "dataSource"; type: "QVariant" }
         Property { name: "borderColor"; type: "QColor" }
         Property { name: "horizonalHeaderVisible"; type: "bool" }
         Property { name: "verticalHeaderVisible"; type: "bool" }
+        Property { name: "startRowIndex"; type: "int" }
         Property { name: "selectedBorderColor"; type: "QColor" }
         Property { name: "selectedColor"; type: "QColor" }
         Property { name: "columnWidthProvider"; type: "QVariant" }
@@ -4320,8 +4501,10 @@ Module {
         defaultProperty: "contentData"
         Property { name: "steps"; type: "QVariant" }
         Property { name: "targetMargins"; type: "int" }
+        Property { name: "targetRadius"; type: "int" }
         Property { name: "nextButton"; type: "QQmlComponent"; isPointer: true }
         Property { name: "prevButton"; type: "QQmlComponent"; isPointer: true }
+        Property { name: "indicator"; type: "QQmlComponent"; isPointer: true }
         Property { name: "index"; type: "int" }
         Property { name: "finishText"; type: "string" }
         Property { name: "nextText"; type: "string" }

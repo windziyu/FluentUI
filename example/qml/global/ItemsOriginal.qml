@@ -216,6 +216,12 @@ FluObject{
             url: "qrc:/example/qml/page/T_Watermark.qml"
             onTap: { navigationView.push(url) }
         }
+        FluPaneItem{
+            title: qsTr("BubbleBox")
+            menuDelegate: paneItemMenu
+            url: "qrc:/example/qml/page/T_BubbleBox.qml"
+            onTap: { navigationView.push(url) }
+        }
     }
 
     FluPaneItemExpander{
@@ -340,6 +346,12 @@ FluObject{
             url: "qrc:/example/qml/page/T_FlipView.qml"
             onTap: { navigationView.push(url) }
         }
+        FluPaneItem{
+            title: qsTr("ParallaxView")
+            menuDelegate: paneItemMenu
+            url: "qrc:/example/qml/page/T_ParallaxView.qml"
+            onTap: { navigationView.push(url) }
+        }
     }
 
     FluPaneItemExpander{
@@ -454,6 +466,18 @@ FluObject{
             title: qsTr("Timeline")
             menuDelegate: paneItemMenu
             url: "qrc:/example/qml/page/T_Timeline.qml"
+            onTap: { navigationView.push(url) }
+        }
+        FluPaneItem{
+            title: qsTr("Pinyin")
+            menuDelegate: paneItemMenu
+            url: "qrc:/example/qml/page/T_Pinyin.qml"
+            onTap: { navigationView.push(url) }
+        }
+        FluPaneItem{
+            title: qsTr("CountTimer")
+            menuDelegate: paneItemMenu
+            url: "qrc:/example/qml/page/T_CountTimer.qml"
             onTap: { navigationView.push(url) }
         }
         FluPaneItem{
