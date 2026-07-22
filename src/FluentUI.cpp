@@ -23,6 +23,7 @@
 #include "qmlcustomplot/axis.h"
 #include "qmlcustomplot/ticker.h"
 #include "qmlcustomplot/grid.h"
+#include "qmlcustomplot/RealTimePlot.h"
 
 const char* FluentUI::_uri = "FluentUI";
 
@@ -51,6 +52,7 @@ void FluentUI::registerTypes(const char *uri) {
 
     qmlRegisterType<QmlQCustomPlot::TimePlot>(uri, major, minor, "TimePlot");
     qmlRegisterType<QmlQCustomPlot::BasePlot>(uri, major, minor, "BasePlot");
+    qmlRegisterType<QmlQCustomPlot::RealTimePlot>(uri, major, minor, "RealTimePlot");
 
     qmlRegisterUncreatableType<QmlQCustomPlot::Axis>(uri, major, minor, "Axis", "");
     qmlRegisterUncreatableType<QmlQCustomPlot::Ticker>(uri, major, minor, "Ticker", "");
